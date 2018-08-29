@@ -34,8 +34,7 @@ var config = {
   devtool: isProd ? "hidden-source-map" : "source-map",
   context: path.resolve("./src"),
   entry: {
-    app: "./index.ts",
-    vendor: "./vendor.ts"
+    app: "./index.ts"
   },
   output: {
     path: path.resolve("./dist"),
