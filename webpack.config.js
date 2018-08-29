@@ -38,8 +38,8 @@ var config = {
   },
   output: {
     path: path.resolve("./dist"),
-    filename: "[name].bundle.js",
-    sourceMapFilename: "[name].bundle.map",
+    filename: "index.js",
+    sourceMapFilename: "index.map",
     devtoolModuleFilenameTemplate: function(info) {
       return "file:///" + info.absoluteResourcePath;
     }
