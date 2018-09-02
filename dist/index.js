@@ -14,23 +14,27 @@ var EntityBuilder = /** @class */function () {
         this.entity.setAttribute(key, attribute);
         return this;
     };
-    EntityBuilder.prototype.attachx = function (f) {
-        f.el.appendChild(this.entity);
+    EntityBuilder.prototype.toEntity = function () {
+        return this.entity;
     };
-    EntityBuilder.prototype.attach = function (parent) {
-        if (!!parent) {
-            // a parent was specified
-            if ("el" in parent) {
-                // there's an element in this parent; attach the entity
-                // being created there
-                parent.el.appendChild(this.entity);
-            } else {
-                // there isn't; attach directly
-                parent.appendChild(this.entity);
-            }
-        } else {
+    EntityBuilder.prototype.attachTo = function (parent) {
+        if (!parent) {
             // attach to the scene by default
             document.querySelector("a-scene").appendChild(this.entity);
+            return this;
+        }
+        // a parent was specified
+        if ("el" in parent) {
+            // there's an element in this parent; attach the entity
+            // being created there
+            parent.el.appendChild(this.entity);
+        } else {
+            // there isn't; attach directly
+            if ("appendChild" in parent) {
+                parent.appendChild(this.entity);
+            } else {
+                // parent.attach(this.entity)
+            }
         }
         return this;
     };
@@ -62,13 +66,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var entity_builder_1 = __webpack_require__(0);
 var ComponentWrapper = /** @class */function () {
     function ComponentWrapper(name, schema) {
-        var _this = this;
         this.name = name;
-        var funcs = ComponentWrapper.getInstanceMethodNames(this, Object.prototype);
-        funcs.forEach(function (k) {
-            return _this[k] = _this[k];
-        });
-        this["schema"] = schema || {};
+        this.schema = schema;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // default aframe core function implementations
@@ -81,6 +80,13 @@ var ComponentWrapper = /** @class */function () {
     ComponentWrapper.prototype.flushToDOM = function () {};
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations
+    ComponentWrapper.prototype.merge = function () {
+        var _this = this;
+        var funcs = ComponentWrapper.getInstanceMethodNames(this, Object.prototype);
+        funcs.forEach(function (k) {
+            return _this[k] = _this[k];
+        });
+    };
     ComponentWrapper.prototype.destroy = function () {
         var parent = this.el.parentElement;
         if (!!parent) {
@@ -88,6 +94,7 @@ var ComponentWrapper = /** @class */function () {
         }
     };
     ComponentWrapper.prototype.register = function () {
+        this.merge();
         AFRAME.registerComponent(this.name, this);
     };
     ComponentWrapper.prototype.buildEntity = function (type) {

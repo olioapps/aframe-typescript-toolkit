@@ -1,7 +1,7 @@
 /// <reference types="aframe" />
 import EntityBuilder from "./entity_builder";
-export default abstract class ComponentWrapper<S = {}> implements AFrame.Component<S> {
-    data: S;
+export default abstract class ComponentWrapper<SCHEMA = {}> implements AFrame.Component<SCHEMA> {
+    data: SCHEMA;
     name: string;
     el: AFrame.Entity;
     id: string;
@@ -15,6 +15,7 @@ export default abstract class ComponentWrapper<S = {}> implements AFrame.Compone
     update(oldData: {}): void;
     extendSchema(update: {}): void;
     flushToDOM(): void;
+    merge(): void;
     destroy(): void;
     register(): void;
     buildEntity(type: string): EntityBuilder;
