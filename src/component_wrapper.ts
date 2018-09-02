@@ -1,11 +1,9 @@
 import EntityBuilder from "./entity_builder"
 
-export default abstract class ComponentWrapper<S = {}> 
-    implements AFrame.Component<S> {
+export default abstract class ComponentWrapper<SCHEMA = {}> 
+    implements AFrame.Component<SCHEMA> {
 
-    // component: AFrame.Component
-
-    data: S
+    data: SCHEMA
     name: string
     el: AFrame.Entity
     id: string
@@ -14,9 +12,7 @@ export default abstract class ComponentWrapper<S = {}>
 
     constructor(name: string, schema?: {}) {
         this.name = name
-        const funcs = ComponentWrapper.getInstanceMethodNames(this, Object.prototype)
-        funcs.forEach( k => this[k] = this[k])
-        this["schema"] = schema || {}
+        this.schema = schema
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +29,11 @@ export default abstract class ComponentWrapper<S = {}>
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations
 
+    merge() {
+        const funcs = ComponentWrapper.getInstanceMethodNames(this, Object.prototype)
+        funcs.forEach( k => this[k] = this[k])
+    }
+
     destroy() {
         const parent = this.el.parentElement
         if (!!parent) {
@@ -41,6 +42,7 @@ export default abstract class ComponentWrapper<S = {}>
     }
 
     register() {
+        this.merge()
         AFRAME.registerComponent(this.name, this)
     }
 

@@ -1,10 +1,9 @@
-import ComponentWrapper from "./component_wrapper";
-
+import ComponentWrapper from "./component_wrapper"
 export default class EntityBuilder {
-    entity: AFrame.ANode
+    private entity: AFrame.Entity
 
     constructor(type: string) {
-        this.entity = document.createElement(type)
+        this.entity = <AFrame.Entity> document.createElement(type)
     }
 
     set(key: string, attribute: {}): EntityBuilder {
@@ -12,25 +11,31 @@ export default class EntityBuilder {
         return this
     }
 
-    attachx(f: ComponentWrapper) {
-        f.el.appendChild(this.entity)
+    toEntity(): AFrame.Entity {
+        return this.entity
     }
 
-    attach(parent?: AFrame.ANode | AFrame.Scene | AFrame.Entity | ComponentWrapper): EntityBuilder {
-        if (!!parent) {
-            // a parent was specified
-            if ("el" in parent) {
-                // there's an element in this parent; attach the entity
-                // being created there
-                parent.el.appendChild(this.entity)
-            } else {
-                // there isn't; attach directly
-                parent.appendChild(this.entity)
-            }             
-        } else {
+    attachTo(parent?: EntityBuilder | AFrame.ANode | AFrame.Scene | AFrame.Entity | ComponentWrapper): EntityBuilder {
+        if (!parent) {
             // attach to the scene by default
             document.querySelector("a-scene").appendChild(this.entity)
+            return this
         }
+
+        // a parent was specified
+        if ("el" in parent) {
+            // there's an element in this parent; attach the entity
+            // being created there
+            parent.el.appendChild(this.entity)
+        } else {
+            // there isn't; attach directly
+            if ("appendChild" in parent) {
+                parent.appendChild(this.entity)
+            } else {
+                // parent.attach(this.entity)
+            }
+        }    
+
         return this
     }
 
