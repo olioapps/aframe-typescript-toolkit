@@ -1,13 +1,44 @@
-import ComponentWrapper from "./component_wrapper"
-export default class EntityBuilder {
+import { ComponentWrapper } from "./aframe_wrapper"
+
+export interface Attributes {
+    [key: string]: {}
+}
+
+export class EntityBuilder {
     private entity: AFrame.Entity
 
-    constructor(type: string) {
+    constructor(type: string, attributes?: Attributes) {
         this.entity = <AFrame.Entity> document.createElement(type)
+        if (attributes) {
+            this.setAttributes(attributes)
+        }
     }
 
-    set(key: string, attribute: {}): EntityBuilder {
-        this.entity.setAttribute(key, attribute)
+    static create(type: string, attributes: Attributes, children?: EntityBuilder[]): EntityBuilder {
+        const builder = new EntityBuilder(type, attributes)
+        if (!!children) {
+            children.forEach( c => {
+                c.attachTo(builder.entity)
+            })
+        }
+        return builder
+    }
+
+    set(a: string, b?: any, c?: {}): EntityBuilder {
+        if (!!b && !!c) {
+            this.entity.setAttribute(a, b, c)
+        } else if (!!b) {
+            this.entity.setAttribute(a, b || "")
+        } else {
+            this.entity.setAttribute(a, "")
+        }
+        return this
+    }
+
+    setAttributes(attributes: Attributes): EntityBuilder {
+        Object.keys(attributes).forEach( k => {
+            this.set(k, attributes[k])            
+        })
         return this
     }
 
