@@ -74,6 +74,12 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
     register() {
         this.merge()
         AFRAME.registerComponent(this.name, this)
+
+        return this
+    }
+
+    registerCallback(callbackName: string, fn: Function) {
+        this.el.addEventListener(callbackName, fn.bind(this))
     }
 }
 

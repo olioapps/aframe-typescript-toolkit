@@ -16,7 +16,8 @@ export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFram
     play(): void;
     merge(): void;
     destroy(): void;
-    register(): void;
+    register(): this;
+    registerCallback(callbackName: string, fn: Function): void;
 }
 export declare abstract class SystemWrapper<SCHEMA = {}> implements AFrame.System {
     data: SCHEMA;

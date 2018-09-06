@@ -77,6 +77,10 @@ var ComponentWrapper = /** @class */function () {
     ComponentWrapper.prototype.register = function () {
         this.merge();
         AFRAME.registerComponent(this.name, this);
+        return this;
+    };
+    ComponentWrapper.prototype.registerCallback = function (callbackName, fn) {
+        this.el.addEventListener(callbackName, fn.bind(this));
     };
     return ComponentWrapper;
 }();
