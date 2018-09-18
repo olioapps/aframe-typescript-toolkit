@@ -1,5 +1,3 @@
-import { registerComponent, registerSystem } from "aframe"
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // helpers
 
@@ -75,7 +73,7 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
 
     register() {
         this.merge()
-        registerComponent(this.name, this)
+        AFRAME.registerComponent(this.name, this)
 
         return this
     }
@@ -115,6 +113,6 @@ export abstract class SystemWrapper<SCHEMA = {}>
 
     register() {
         this.merge()
-        registerSystem(this.name, this)
+        AFRAME.registerSystem(this.name, this)
     }
 }
