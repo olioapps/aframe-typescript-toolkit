@@ -46,7 +46,6 @@
     "@types/three": "^0.92.21",
     "@types/webvr-api": "^0.0.35",
     "aframe": "^0.8.0",
-    "aframe-extras": "^4.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
