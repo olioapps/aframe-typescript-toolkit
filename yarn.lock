@@ -101,9 +101,15 @@
   version "4.14.116"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.116.tgz#5ccf215653e3e8c786a58390751033a9adca0eb9"
 
-"@types/three@*", "@types/three@^0.92.17":
+"@types/three@*":
   version "0.92.18"
   resolved "https://registry.yarnpkg.com/@types/three/-/three-0.92.18.tgz#49db164e47b00894bdf735f507af8993e5f777a9"
+  dependencies:
+    "@types/webvr-api" "*"
+
+"@types/three@^0.92.21":
+  version "0.92.21"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.92.21.tgz#9e44e896f3c4926c9764d27ba0e53cc91f66bd4d"
   dependencies:
     "@types/webvr-api" "*"
 
@@ -114,6 +120,10 @@
 "@types/webvr-api@*":
   version "0.0.34"
   resolved "https://registry.yarnpkg.com/@types/webvr-api/-/webvr-api-0.0.34.tgz#8fa49028de925c7b8bce3d559d3374ce2c89ee28"
+
+"@types/webvr-api@^0.0.35":
+  version "0.0.35"
+  resolved "https://registry.yarnpkg.com/@types/webvr-api/-/webvr-api-0.0.35.tgz#13b3cf1cd90544524d932ed36e6b109a2ec73d22"
 
 abbrev@1:
   version "1.1.1"
@@ -1456,7 +1466,7 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
-debug@2.2.0, "debug@github:ngokevin/debug#noTimestamp":
+debug@2.2.0, debug@ngokevin/debug#noTimestamp:
   version "2.2.0"
   resolved "https://codeload.github.com/ngokevin/debug/tar.gz/ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a"
 
@@ -1651,7 +1661,7 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
-"document-register-element@github:dmarcos/document-register-element#8ccc532b7":
+document-register-element@dmarcos/document-register-element#8ccc532b7:
   version "0.5.4"
   resolved "https://codeload.github.com/dmarcos/document-register-element/tar.gz/8ccc532b7f3744be954574caf3072a5fd260ca90"
 

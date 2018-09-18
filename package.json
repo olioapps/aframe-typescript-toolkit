@@ -1,9 +1,9 @@
 {
   "name": "aframe-typescript-toolkit",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "src/index.ts",
   "scripts": {
-    "build": "./scripts/fix_webvr.sh && cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail",
     "clean": "npm cache clear && rimraf -- dist",
     "test": "karma start"
   },
@@ -43,7 +43,8 @@
   },
   "dependencies": {
     "@types/aframe": "^0.7.2",
-    "@types/three": "^0.92.17",
+    "@types/three": "^0.92.21",
+    "@types/webvr-api": "^0.0.35",
     "aframe": "^0.8.0",
     "aframe-extras": "^4.1.2",
     "babel-core": "^6.22.1",
