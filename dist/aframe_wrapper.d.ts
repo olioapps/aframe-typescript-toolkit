@@ -3,10 +3,10 @@ export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFram
     el: AFrame.Entity;
     id: string;
     data: SCHEMA;
-    schema: any;
+    schema: AFrame.Schema<SCHEMA>;
     system: SYSTEM;
     name: string;
-    constructor(name: string, schema?: {});
+    constructor(name: string, schema?: AFrame.Schema<SCHEMA>);
     remove(): void;
     update(oldData: {}): void;
     extendSchema(update: {}): void;
@@ -21,10 +21,10 @@ export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFram
 }
 export declare abstract class SystemWrapper<SCHEMA = {}> implements AFrame.System {
     data: SCHEMA;
-    schema: any;
+    schema: AFrame.Schema<SCHEMA>;
     system: any;
     name: string;
-    constructor(name: string, schema?: {});
+    constructor(name: string, schema?: AFrame.Schema<SCHEMA>);
     init(): void;
     pause(): void;
     play(): void;

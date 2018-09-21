@@ -29,11 +29,11 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
     el: AFrame.Entity
     id: string
     data: SCHEMA
-    schema: any
+    schema: AFrame.Schema<SCHEMA>
     system: SYSTEM
     name: string
 
-    constructor(name: string, schema?: {}) {
+    constructor(name: string, schema?: AFrame.Schema<SCHEMA>) {
         this.name = name
         this.schema = schema || {}
     }
@@ -87,11 +87,11 @@ export abstract class SystemWrapper<SCHEMA = {}>
     implements AFrame.System {
 
     data: SCHEMA
-    schema: any
+    schema: AFrame.Schema<SCHEMA>
     system: any
     name: string
 
-    constructor(name: string, schema?: {}) {
+    constructor(name: string, schema?: AFrame.Schema<SCHEMA>) {
         this.name = name
         this.schema = schema
     }
