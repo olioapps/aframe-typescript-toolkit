@@ -1,6 +1,6 @@
 {
   "name": "aframe-typescript-toolkit",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "src/index.ts",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail",
