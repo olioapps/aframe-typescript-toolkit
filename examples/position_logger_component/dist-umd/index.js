@@ -111,11 +111,20 @@ var PositionLogger = /** @class */function (_super) {
         _this.lastTs = 0;
         return _this;
     }
+    PositionLogger.prototype.init = function () {
+        // create a text component and attach it to the logged component
+        aframe_typescript_toolkit_1.EntityBuilder.create("a-text", {
+            id: "logtext",
+            value: "watch me!",
+            color: "purple",
+            position: "-1 1.25 0"
+        }).attachTo(this.el);
+    };
     PositionLogger.prototype.tick = function () {
         var now = new Date().getTime();
         if (now - this.lastTs > this.data.intervalTsMs) {
             var currentPos = this.el.object3D.position.clone();
-            console.log("Position", currentPos);
+            this.el.querySelector("#logtext").setAttribute("value", currentPos.x.toFixed(2) + ", " + currentPos.y + ", " + currentPos.z);
             this.lastTs = now;
         }
     };

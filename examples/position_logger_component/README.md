@@ -1,8 +1,8 @@
 # Position Logger A-Frame Component
 
-This is a complete example of a how to create an A-Frame component using `ComponentWrapper`. You can see it in action by simply opening `index.html` in a browser, and observing the console log.
+This is a complete example of a how to create an A-Frame component using `ComponentWrapper`. You can see it in action by simply opening `index.html` in a browser. and observing the scene.
 
-As the sphere traverses the scene, `position-logger` will output the entity's position to the console log.
+As the sphere traverses the scene, `position-logger` will output the entity's position to a text component hovering near the sphere.
 
 # Building the example
 

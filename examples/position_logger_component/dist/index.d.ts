@@ -1,9 +1,11 @@
 import { ComponentWrapper } from "aframe-typescript-toolkit";
-export interface PositionLoggerSchema {
+interface PositionLoggerSchema {
     readonly intervalTsMs: number;
 }
 export declare class PositionLogger extends ComponentWrapper<PositionLoggerSchema> {
     lastTs: number;
     constructor();
+    init(): void;
     tick(): void;
 }
+export {};
