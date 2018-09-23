@@ -1,4 +1,4 @@
-# aframe-typescript-toolkit
+# A-Frame + Typescript
 
-Convenience utilities and base classes that can be used to build aframe components using typescript.
-We're using this at Olio Apps (http://www.olioapps.com/).
+This repository offers wrapper classes for A-Frame building blocks such as Components and Systems, making it easy to build A-Frame code that looks and feels like idiomatic Typescript code.
+
