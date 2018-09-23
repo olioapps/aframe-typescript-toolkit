@@ -14,6 +14,9 @@ export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFram
     init(): void;
     pause(): void;
     play(): void;
+    /***
+     * @hidden
+     */
     merge(): void;
     destroy(): void;
     register(): this;
@@ -28,6 +31,9 @@ export declare abstract class SystemWrapper<SCHEMA = {}> implements AFrame.Syste
     init(): void;
     pause(): void;
     play(): void;
+    /***
+     * @hidden
+     */
     merge(): void;
     register(): void;
 }

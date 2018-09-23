@@ -1,11 +1,17 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // helpers
 
+/***
+ * @hidden
+ */
 const hasMethod = (obj: {}, name: string) => {
     const desc = Object.getOwnPropertyDescriptor (obj, name)
     return !!desc && typeof desc.value === "function"
 }
 
+/***
+ * @hidden
+ */
 const getInstanceMethodNames = (obj: {}, stop: {}) => {
     const array: string[] = []
     let proto = Object.getPrototypeOf (obj)
@@ -56,6 +62,9 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations
 
+    /***
+     * @hidden
+     */
     merge() {
         const funcs = getInstanceMethodNames(this, Object.prototype)
         funcs.forEach( k => this[k] = this[k])
@@ -106,6 +115,9 @@ export abstract class SystemWrapper<SCHEMA = {}>
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations
 
+    /***
+     * @hidden
+     */
     merge() {
         const funcs = getInstanceMethodNames(this, Object.prototype)
         funcs.forEach( k => this[k] = this[k])

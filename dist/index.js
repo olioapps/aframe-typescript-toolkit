@@ -22,10 +22,16 @@ exports.EntityBuilder = entity_builder_1.EntityBuilder;
 // helpers
 
 Object.defineProperty(exports, "__esModule", { value: true });
+/***
+ * @hidden
+ */
 var hasMethod = function (obj, name) {
     var desc = Object.getOwnPropertyDescriptor(obj, name);
     return !!desc && typeof desc.value === "function";
 };
+/***
+ * @hidden
+ */
 var getInstanceMethodNames = function (obj, stop) {
     var array = [];
     var proto = Object.getPrototypeOf(obj);
@@ -59,6 +65,9 @@ var ComponentWrapper = /** @class */function () {
     ComponentWrapper.prototype.play = function () {};
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations
+    /***
+     * @hidden
+     */
     ComponentWrapper.prototype.merge = function () {
         var _this = this;
         var funcs = getInstanceMethodNames(this, Object.prototype);
@@ -97,6 +106,9 @@ var SystemWrapper = /** @class */function () {
     SystemWrapper.prototype.play = function () {};
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations
+    /***
+     * @hidden
+     */
     SystemWrapper.prototype.merge = function () {
         var _this = this;
         var funcs = getInstanceMethodNames(this, Object.prototype);
