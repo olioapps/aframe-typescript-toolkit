@@ -6,15 +6,8 @@
 
         <script>
             AFRAME.registerComponent("my-moving-component", {
-                init: function() {
-                  this.lastTs = 0  
-                },
                 tick: function() {
-                    const now = new Date().getTime()
-                    if (now - this.lastTs > 1000) {
-                        this.el.object3D.position.x += 0.1
-                        this.lastTs = now
-                    }                    
+                    this.el.object3D.position.x += 0.005
                 }
         })
         </script>
@@ -22,16 +15,12 @@
 
     <body>
         <a-scene embedded antialias="true">
-        <a-sphere color="blue" my-moving-component
+        <a-sphere color="blue" 
+                  my-moving-component
                   position="-1 2 -5"
                   position-logger>
                   <a-text value="Watch the console log!" width="5"  height="5" value="1" color="red" position="-4 0 0"></a-text>
         </a-sphere>
-        <a-entity>
-            <a-sky color="#ECECEC"></a-sky>
-            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
-        </a-entity>
-        
         <a-sky color="#ECECEC"></a-sky>
         <a-light position="0 10 0" color="white" type="point"></a-light>
         <a-ocean color="aqua" depth="100" width="100"></a-ocean>
