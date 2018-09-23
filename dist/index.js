@@ -47,6 +47,11 @@ var getInstanceMethodNames = function (obj, stop) {
     }
     return array;
 };
+/**
+ * Extend this class to create strongly typed A-Frame components.
+ * Default implementations for component lifecycle methods such as init(), tick(), and others are provided,
+ * and can be overridden for your component's specific behavior.
+ */
 var ComponentWrapper = /** @class */function () {
     function ComponentWrapper(name, schema) {
         this.name = name;
@@ -54,14 +59,32 @@ var ComponentWrapper = /** @class */function () {
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // default aframe core function implementations
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_remove.
+     */
     ComponentWrapper.prototype.remove = function () {};
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_update.
+     */
     ComponentWrapper.prototype.update = function (oldData) {};
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_updateschema.
+     */
     ComponentWrapper.prototype.extendSchema = function (update) {};
     ComponentWrapper.prototype.flushToDOM = function () {};
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // default aframe core function implementations
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_init.
+     */
     ComponentWrapper.prototype.init = function () {};
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_pause.
+     */
     ComponentWrapper.prototype.pause = function () {};
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_play.
+     */
     ComponentWrapper.prototype.play = function () {};
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations

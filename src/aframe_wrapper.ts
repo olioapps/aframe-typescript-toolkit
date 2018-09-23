@@ -29,6 +29,11 @@ const getInstanceMethodNames = (obj: {}, stop: {}) => {
     return array
 }
 
+/**
+ * Extend this class to create strongly typed A-Frame components. 
+ * Default implementations for component lifecycle methods such as init(), tick(), and others are provided,
+ * and can be overridden for your component's specific behavior.
+ */
 export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System = AFrame.System> 
     implements AFrame.Component<SCHEMA, SYSTEM> {
 
@@ -47,16 +52,34 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // default aframe core function implementations
 
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_remove.
+     */
     remove() {}
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_update.
+     */
     update(oldData: {}) {}
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_updateschema.
+     */
     extendSchema(update: {}) {}
     flushToDOM() {}
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // default aframe core function implementations
 
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_init.
+     */
     init() {}
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_pause.
+     */
     pause() {}
+    /**
+     * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_play.
+     */
     play() {}
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
