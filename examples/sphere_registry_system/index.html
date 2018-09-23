@@ -23,12 +23,12 @@
 
                 const x = randomIn(-2, 2)
                 const y = randomIn(-2, 2)
-                const z = randomIn(-5, -2)
+                const z = randomIn(-5, -1)
 
                 const el = document.createElement("a-sphere")
                 el.setAttribute("position", `${x} ${y} ${z}`)
                 el.setAttribute("color", color)
-                el.setAttribute("sphere-registry", "color: " + color)
+                el.setAttribute("sphere-registry", "color: " + color + "; position: " + `${x},${y},${z}`)
                 const scene = document.getElementById("scene")
                 scene.appendChild(el)
             }
@@ -45,9 +45,14 @@
     <body>
         <a href="javascript:" onClick="javascript:addBall()">Add</a>
         <a-scene embedded antialias="true" id="scene">
-        <a-sky color="#ECECEC"></a-sky>
-        <a-light position="0 10 0" color="white" type="point"></a-light>
-        <a-ocean color="aqua" depth="100" width="100"></a-ocean>
-    </a-scene>
+            <a-sky color="#ECECEC"></a-sky>
+            <a-text id="board"
+                value=""
+                position="-3 2 -2"   
+                color="red"
+            ></a-text>
+            <a-light position="0 10 0" color="white" type="point"></a-light>
+            <a-ocean color="aqua" depth="100" width="100"></a-ocean>
+        </a-scene>
     </body>
 </html>

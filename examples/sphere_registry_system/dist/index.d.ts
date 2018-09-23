@@ -1,10 +1,14 @@
-import { ComponentWrapper } from "aframe-typescript-toolkit";
-interface PositionLoggerSchema {
-    readonly intervalTsMs: number;
+import { ComponentWrapper, SystemWrapper } from "aframe-typescript-toolkit";
+interface SphereRegistryComponentSchema {
+    readonly color: string;
+    readonly position: string;
 }
-export declare class PositionLogger extends ComponentWrapper<PositionLoggerSchema> {
-    lastTs: number;
+export declare class SphereRegistryComponent extends ComponentWrapper<SphereRegistryComponentSchema, SphereRegistrySystem> {
     constructor();
-    tick(): void;
+    init(): void;
+}
+export declare class SphereRegistrySystem extends SystemWrapper {
+    constructor();
+    add(component: SphereRegistryComponent): void;
 }
 export {};

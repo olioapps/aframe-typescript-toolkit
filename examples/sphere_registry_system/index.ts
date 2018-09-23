@@ -1,29 +1,44 @@
-import { ComponentWrapper } from "aframe-typescript-toolkit"
+import { ComponentWrapper, SystemWrapper } from "aframe-typescript-toolkit"
 
-interface PositionLoggerSchema {
-    readonly intervalTsMs: number
+interface SphereRegistryComponentSchema {
+    readonly color: string
+    readonly position: string
 }
 
-export class PositionLogger extends ComponentWrapper<PositionLoggerSchema> {
-    lastTs: number = 0
-
+export class SphereRegistryComponent extends ComponentWrapper<SphereRegistryComponentSchema, SphereRegistrySystem> {
     constructor() {
-        super("position-logger", {
-            intervalTsMs: {
-                type: "number",
-                default: 1000,
-            }
+        super("sphere-registry", {
+            color: {
+                default: "",
+            },
+            position: {
+                default: "",
+            },
         })
     }
 
-    tick() {
-        const now = new Date().getTime()
-        if (now - this.lastTs > this.data.intervalTsMs) {
-            const currentPos = this.el.object3D.position.clone()
-            console.log("Position", currentPos)
-            this.lastTs = now
-        }
+    init() {
+        this.system.add(this)
     }
 }
 
-new PositionLogger().register()
+export class SphereRegistrySystem extends SystemWrapper {
+    constructor() {
+        super("sphere-registry", {})
+
+        new SphereRegistryComponent().register()
+    }
+
+    add(component: SphereRegistryComponent) {
+        const { color, position } = component.data
+        console.log(color, position)
+
+        const board = document.querySelector("#board")
+        const text = board.getAttribute("value")
+        const newText = text + "\n" + `${color} @ ${position}`
+        board.setAttribute("value", newText)
+
+    }
+}
+
+new SphereRegistrySystem().register()

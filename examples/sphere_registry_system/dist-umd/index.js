@@ -99,30 +99,45 @@ var __extends = this && this.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var aframe_typescript_toolkit_1 = __webpack_require__(1);
-var PositionLogger = /** @class */function (_super) {
-    __extends(PositionLogger, _super);
-    function PositionLogger() {
-        var _this = _super.call(this, "position-logger", {
-            intervalTsMs: {
-                type: "number",
-                default: 1000
+var SphereRegistryComponent = /** @class */function (_super) {
+    __extends(SphereRegistryComponent, _super);
+    function SphereRegistryComponent() {
+        return _super.call(this, "sphere-registry", {
+            color: {
+                default: ""
+            },
+            position: {
+                default: ""
             }
         }) || this;
-        _this.lastTs = 0;
+    }
+    SphereRegistryComponent.prototype.init = function () {
+        this.system.add(this);
+    };
+    return SphereRegistryComponent;
+}(aframe_typescript_toolkit_1.ComponentWrapper);
+exports.SphereRegistryComponent = SphereRegistryComponent;
+var SphereRegistrySystem = /** @class */function (_super) {
+    __extends(SphereRegistrySystem, _super);
+    function SphereRegistrySystem() {
+        var _this = _super.call(this, "sphere-registry", {}) || this;
+        new SphereRegistryComponent().register();
         return _this;
     }
-    PositionLogger.prototype.tick = function () {
-        var now = new Date().getTime();
-        if (now - this.lastTs > this.data.intervalTsMs) {
-            var currentPos = this.el.object3D.position.clone();
-            console.log("Position", currentPos);
-            this.lastTs = now;
-        }
+    SphereRegistrySystem.prototype.add = function (component) {
+        var _a = component.data,
+            color = _a.color,
+            position = _a.position;
+        console.log(color, position);
+        var board = document.querySelector("#board");
+        var text = board.getAttribute("value");
+        var newText = text + "\n" + (color + " @ " + position);
+        board.setAttribute("value", newText);
     };
-    return PositionLogger;
-}(aframe_typescript_toolkit_1.ComponentWrapper);
-exports.PositionLogger = PositionLogger;
-new PositionLogger().register();
+    return SphereRegistrySystem;
+}(aframe_typescript_toolkit_1.SystemWrapper);
+exports.SphereRegistrySystem = SphereRegistrySystem;
+new SphereRegistrySystem().register();
 
 /***/ }),
 /* 1 */
