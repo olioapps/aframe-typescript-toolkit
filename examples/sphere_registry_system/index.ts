@@ -24,7 +24,7 @@ export class SphereRegistryComponent extends ComponentWrapper<SphereRegistryComp
 
 export class SphereRegistrySystem extends SystemWrapper {
     constructor() {
-        super("sphere-registry", {})
+        super("sphere-registry")
 
         new SphereRegistryComponent().register()
     }

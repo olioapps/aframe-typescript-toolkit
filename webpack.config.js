@@ -3,6 +3,7 @@ const path = require("path");
 const DashboardPlugin = require("webpack-dashboard/plugin");
 const nodeEnv = process.env.NODE_ENV || "development";
 const isProd = nodeEnv === "production";
+const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -23,6 +24,14 @@ const plugins = [
         failOnHint: true
       }
     }
+  }),
+  new TypedocWebpackPlugin({
+      out: './docs',
+      module: 'commonjs',
+      target: 'es5',
+      exclude: ['**/node_modules/**/*.*', '**/examples/**/*.*'],
+      experimentalDecorators: true,
+      excludeExternals: true
   })
 ];
 
