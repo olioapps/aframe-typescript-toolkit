@@ -35,12 +35,12 @@ See the docs for additional information on [EntityBuilder](https://cdn.rawgit.co
 ### ComponentWrapper
 The ComponentWrapper is a base class for creating strongly typed A-Frame components. Component lifecycle methods such as init(), tick(), and others are provided, and can be overridden to suit your component's specific behavior.
 
-See the [Position Logger](https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/position_logger_component) example as well as the [docs](https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/classes/_aframe_wrapper_.componentwrapper.html) for more details. 
+See the [example](https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/position_logger_component) as well as the [ComponentWrapper docs](https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/classes/_aframe_wrapper_.componentwrapper.html) for more details. 
 
 ### SystemWrapper
 The SystemWrapper allows you to create typescript A-Frame systems. Components can subscribe themselves to a system, allowing the system to reference its components.
 
-See the [Sphere Registry System](https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/sphere_registry_system) example as well as the [docs](https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/classes/_aframe_wrapper_.systemwrapper.html) for more details. 
+See the [example](https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/sphere_registry_system) as well as the [SystemWrapper docs](https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/classes/_aframe_wrapper_.systemwrapper.html) for more details. 
 
 ## Examples 
 ### [Position Logger](https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/position_logger_component)
