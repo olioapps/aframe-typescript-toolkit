@@ -67,6 +67,30 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Extend this class to create strongly typed A-Frame System.
+							Like components, there are default implementations for component lifecycle
+							methods such as init(), play(), pause(), and tick()
+							that can be overridden.
+						Additional Information on A-Frame systems can be found here: <a href="https://aframe.io/docs/0.8.0/core/systems.html">A-Frame Docs: System</a></p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>example</dt>
+						<dd><pre><code class="language-typescript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewSystem <span class="hljs-keyword">extends</span> SystemWrapper {
+   <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+       <span class="hljs-keyword">super</span>(<span class="hljs-string">"new"</span>)
+
+       <span class="hljs-keyword">new</span> NewComponent().register()
+   }
+}
+</code></pre>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -132,7 +156,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/1688edd/src/aframe_wrapper.ts#L124">aframe_wrapper.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/75957f0/src/aframe_wrapper.ts#L181">aframe_wrapper.ts:181</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -157,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SCHEMA</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/1688edd/src/aframe_wrapper.ts#L121">aframe_wrapper.ts:121</a></li>
+							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/75957f0/src/aframe_wrapper.ts#L178">aframe_wrapper.ts:178</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,7 +191,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/1688edd/src/aframe_wrapper.ts#L124">aframe_wrapper.ts:124</a></li>
+							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/75957f0/src/aframe_wrapper.ts#L181">aframe_wrapper.ts:181</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,7 +201,7 @@
 					<div class="tsd-signature tsd-kind-icon">schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AFrame.Schema</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SCHEMA</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/1688edd/src/aframe_wrapper.ts#L122">aframe_wrapper.ts:122</a></li>
+							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/75957f0/src/aframe_wrapper.ts#L179">aframe_wrapper.ts:179</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,7 +211,7 @@
 					<div class="tsd-signature tsd-kind-icon">system<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/1688edd/src/aframe_wrapper.ts#L123">aframe_wrapper.ts:123</a></li>
+							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/75957f0/src/aframe_wrapper.ts#L180">aframe_wrapper.ts:180</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -204,7 +228,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/1688edd/src/aframe_wrapper.ts#L134">aframe_wrapper.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/75957f0/src/aframe_wrapper.ts#L191">aframe_wrapper.ts:191</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -221,7 +245,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/1688edd/src/aframe_wrapper.ts#L135">aframe_wrapper.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/75957f0/src/aframe_wrapper.ts#L192">aframe_wrapper.ts:192</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -238,7 +262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/1688edd/src/aframe_wrapper.ts#L136">aframe_wrapper.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/75957f0/src/aframe_wrapper.ts#L193">aframe_wrapper.ts:193</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -255,7 +279,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/1688edd/src/aframe_wrapper.ts#L149">aframe_wrapper.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/75957f0/src/aframe_wrapper.ts#L206">aframe_wrapper.ts:206</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
