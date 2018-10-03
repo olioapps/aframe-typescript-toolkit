@@ -64,11 +64,109 @@
 			<div class="tsd-panel tsd-typography">
 				<h1 id="a-frame-typescript">A-Frame + Typescript</h1>
 				<p>This repository offers wrapper classes for A-Frame building blocks such as Components and Systems, making it easy to build A-Frame code that looks and feels like idiomatic Typescript code.</p>
+				<hr>
 				<h2 id="usage">Usage</h2>
-				<h3 id="installation">installation</h3>
+				<p>The following is a brief tutorial on how to use <code>aframe-typescript-toolkit</code> to create and share A-Frame components with Typescript. This will be done in three parts:</p>
+				<pre><code>1. Define <span class="hljs-keyword">and</span> register a component <span class="hljs-keyword">or</span><span class="hljs-built_in"> system </span>class
+2. Use your custom component <span class="hljs-keyword">in</span> a local A-Frame project using webpack
+3. <span class="hljs-builtin-name">Export</span> your custom component via Github &amp; RawGit <span class="hljs-keyword">to</span> be shared <span class="hljs-keyword">and</span> used <span class="hljs-keyword">in</span> other A-Frame projects</code></pre><h3 id="creating-a-frame-components-using-typescript">Creating A-Frame Components using Typescript</h3>
+				<p>In this section, we&#39;ll discuss how to create an A-Frame component using Typescript.</p>
+				<h4 id="1-install-aframe-typescript-toolkit">1. install <code>aframe-typescript-toolkit</code></h4>
 				<pre><code class="language-javascript">npm install aframe-typescript-toolkit
 <span class="hljs-comment">// or  yarn add aframe-typescript-toolkit</span></code></pre>
-				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> AframeTypescriptToolkit <span class="hljs-keyword">from</span> <span class="hljs-string">"aframe-typescript-toolkit"</span></code></pre>
+				<h4 id="2-create-an-index-ts-and-import-componentwrapper-and-entitybuilder">2. create an <code>index.ts</code> and import <code>ComponentWrapper</code> and <code>EntityBuilder</code></h4>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ComponentWrapper, EntityBuilder } <span class="hljs-keyword">from</span> <span class="hljs-string">"aframe-typescript-toolkit"</span></code></pre>
+				<h4 id="2-define-a-schema-for-your-component-s-data">2. Define a schema for your component&#39;s data</h4>
+				<pre><code class="language-typescript"><span class="hljs-keyword">interface</span> NewComponentSchema {
+    readonly color: <span class="hljs-built_in">string</span>
+}</code></pre>
+				<h4 id="3-define-your-component-class-by-extending-componentwrapper">3. Define your component class by extending ComponentWrapper</h4>
+				<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> NewComponent <span class="hljs-keyword">extends</span> ComponentWrapper&lt;NewComponentSchema&gt; {
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">super</span>(<span class="hljs-string">"new-component"</span>, {
+            color: {
+                <span class="hljs-keyword">type</span>: <span class="hljs-string">"string"</span>,
+                <span class="hljs-keyword">default</span>: <span class="hljs-string">"colorless"</span>,
+            }, 
+        })
+    }
+
+    init() {
+        <span class="hljs-keyword">const</span> entityColor = <span class="hljs-keyword">this</span>.el.getAttribute(<span class="hljs-string">"color"</span>)
+        EntityBuilder.create(<span class="hljs-string">"a-text"</span>, {
+            id: <span class="hljs-string">"color-text"</span>,
+            value: entityColor || <span class="hljs-keyword">this</span>.data.color,
+            color: entityColor || <span class="hljs-string">"black"</span>,
+            position: <span class="hljs-string">"-1 1.25 0"</span>,
+        }).attachTo(<span class="hljs-keyword">this</span>.el)
+    }
+}</code></pre>
+				<h4 id="4-register-your-component">4. Register your component</h4>
+				<p>at the bottom of your <code>index.ts</code> file, after defining your component register it so it can be used in your A-Frame scene.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">new</span> NewComponent().register()</code></pre>
+				<h3 id="using-your-custom-component-locally">Using your Custom Component Locally</h3>
+				<p>To use your custom component locally, your typescript file must be compiled into javascript. webpack is a convenient tool to accomplish this. </p>
+				<h4 id="1-create-your-webpack-config-js">1. Create your webpack.config.js</h4>
+				<p>In the root directory of your project, create a file called <code>webpack.config.js</code>. You can configure your webpack to suit your needs. However, if you&#39;re new to webpack or don&#39;t require a custom setup, you can copy the <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/master/examples/sphere_registry_system/webpack.config.js">webpack config from one of our examples</a></p>
+				<p>See the <a href="https://webpack.js.org/concepts/">webpack</a>documentation for more details. </p>
+				<h4 id="2-include-and-install-all-dependencies">2. Include and Install all dependencies</h4>
+				<p>Like the webpack config, you might find it easier to copy the dependencies from one of our <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/master/examples/sphere_registry_system/package.json">examples</a> into your <code>package.json</code> file. </p>
+				<p>Then run <code>npm install</code> to install all dependencies </p>
+				<h4 id="3-add-build-scripts">3. Add build scripts</h4>
+				<p>If you have copied the webpack config and dependencies, you can also copy the build scripts from the <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/master/examples/sphere_registry_system/package.json">example</a> into your project&#39;s <code>package.json</code> file.</p>
+				<pre><code class="language-json">    ...
+    &quot;scripts&quot;: {
+        &quot;build&quot;: &quot;cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail&quot;,
+    ...</code></pre>
+				<h4 id="4-make-a-build">4. Make a build</h4>
+				<p>In your command line, run <code>npm build</code> to create a production build using webpack. </p>
+				<p>You will see <code>./dist</code> and <code>./dist-umd</code> directories have been created inside of your root directory (or otherwise if you used a custom webpack configuration).</p>
+				<h4 id="5-create-an-index-html-a-frame-scene">5. Create an index.html A-Frame Scene</h4>
+				<p>In your <code>index.html</code> file (in the root directory), include the scripts for A-Frame as well as your custom component (<code>dist-umd/index.js</code>).</p>
+				<p>In the A-Frame scene, create an entity using your component by including the component&#39;s name defined in the constructor. In this example, the component&#39;s name is <code>new-component</code>. </p>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- This is the A-Frame CDN --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://aframe.io/releases/0.8.0/aframe.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+
+        <span class="hljs-comment">&lt;!-- This is the file you created in the previous step --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"dist-umd/index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a-scene</span> <span class="hljs-attr">embedded</span> <span class="hljs-attr">antialias</span>=<span class="hljs-string">"true"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">a-sphere</span> 
+                <span class="hljs-attr">color</span>=<span class="hljs-string">"red"</span> 
+                <span class="hljs-attr">position</span>=<span class="hljs-string">"-1 2 -5"</span>
+                <span class="hljs-attr">new-component</span> 
+            &gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">a-sphere</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- 'new-component' is the name we gave our component in the constructor--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">a-box</span>
+                <span class="hljs-attr">position</span>=<span class="hljs-string">"2 3 -10"</span>
+                <span class="hljs-attr">new-component</span>
+            &gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">a-box</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">a-sky</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"#ECECEC"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a-sky</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">a-light</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"0 10 0"</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"white"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"point"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a-light</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">a-scene</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+				<h4 id="6-view-your-a-frame-scene">6. View your A-Frame Scene</h4>
+				<p>Locally serve your project to see what you&#39;ve created. You can run a command like <code>python -m SimpleHTTPServer 3000</code> from your root directory and then visit your web browser at <a href="http://localhost:3000/">http://localhost:3000/</a>
+				. </p>
+				<p>Remember, if you make any changes to your <code>index.ts</code> file, you&#39;ll have to rebuild your project using <code>npm build</code> to see the changes.</p>
+				<img src="./assets/new-component.png" alt="red ball and colorless box">
+				<h3 id="exporting-custom-components">Exporting Custom Components</h3>
+				<p>Seeing your component run locally is great. Now it is time to export it so it can be used by others. There are many ways to do this. One free and convenient way is through github and rawgit</p>
+				<h4 id="1-publish-your-project-to-github">1. Publish your project to github</h4>
+				<p>See <a href="https://help.github.com/">Github&#39;s docs</a> if you are not familiar with this process. </p>
+				<h4 id="2-create-a-cdn-for-your-component-class">2. Create a CDN for your component class</h4>
+				<p>Paste the github link to your <code>dist-umd/index.js</code> file into <a href="https://rawgit.com/">rawgit.com</a>.
+				Example github url: <code>https://github.com/[username]/[aframe-typescript-project]/blob/master/dist-umd/index.js</code></p>
+				<p>RawGit will serve your raw file with proper Content-Type headers and generate a url for you to share.</p>
+				<hr>
 				<h2 id="a-frame-typescript-classes">A-Frame Typescript Classes</h2>
 				<h3 id="entitybuilder">EntityBuilder</h3>
 				<p>Entity builder allows you to create A-Frame entities, set attributes, and attach them to the scene other A-Frame elements. </p>
@@ -85,24 +183,28 @@ EntityBuilder.create(<span class="hljs-string">"a-text"</span>, {
 				<p>See the docs for additional information on <a href="https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/classes/_entity_builder_.entitybuilder.html">EntityBuilder</a></p>
 				<h3 id="componentwrapper">ComponentWrapper</h3>
 				<p>The ComponentWrapper is a base class for creating strongly typed A-Frame components. Component lifecycle methods such as init(), tick(), and others are provided, and can be overridden to suit your component&#39;s specific behavior.</p>
-				<p>See the <a href="https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/position_logger_component">Position Logger</a> example as well as the <a href="https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/classes/_aframe_wrapper_.componentwrapper.html">docs</a> for more details. </p>
+				<p>See the <a href="https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/position_logger_component">example</a> as well as the <a href="https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/classes/_aframe_wrapper_.componentwrapper.html">ComponentWrapper docs</a> for more details. </p>
 				<h3 id="systemwrapper">SystemWrapper</h3>
 				<p>The SystemWrapper allows you to create typescript A-Frame systems. Components can subscribe themselves to a system, allowing the system to reference its components.</p>
-				<p>See the <a href="https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/sphere_registry_system">Sphere Registry System</a> example as well as the <a href="https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/classes/_aframe_wrapper_.systemwrapper.html">docs</a> for more details. </p>
+				<p>See the <a href="https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/sphere_registry_system">example</a> as well as the <a href="https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/classes/_aframe_wrapper_.systemwrapper.html">SystemWrapper docs</a> for more details. </p>
+				<hr>
 				<h2 id="examples">Examples</h2>
 				<h3 id="position-logger"><a href="https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/position_logger_component">Position Logger</a></h3>
 				<p>Position Logger A-Frame Component is a complete example of how to use an A-Frame component using <code>ComponentWrapper</code></p>
 				<h3 id="sphere-registry-system"><a href="https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/sphere_registry_system">Sphere Registry System</a></h3>
 				<p> Sphere Registry A-Frame System is a complete example of a how to create an A-Frame system using <code>SystemWrapper</code></p>
+				<hr>
 				<h2 id="contact">Contact</h2>
 				<p>We are interested in hearing your questions and feedback.</p>
 				<p>Email: <a href="vr@olioapps.com">vr@olioapps.com</a></p>
+				<hr>
 				<h2 id="additional-reading">Additional Reading</h2>
 				<ul>
 					<li><a href="https://cdn.rawgit.com/olioapps/aframe-typescript-toolkit/199aa562/dist/docs/index.html">aframe-typescript-toolkit Docs</a></li>
 					<li><a href="https://aframe.io/">A-Frame</a></li>
 					<li><a href="https://www.typescriptlang.org/docs/home.html">Typescript</a></li>
 				</ul>
+				<hr>
 				<h2 id="license">License</h2>
 				<p>This program is free software and is distributed under an MIT License.</p>
 			</div>
