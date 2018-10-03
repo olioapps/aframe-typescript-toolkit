@@ -3,7 +3,7 @@
  * Extend this class to create strongly typed A-Frame components.
  * Default implementations for component lifecycle methods such as init(), tick(), and others are provided,
  * and can be overridden for your component's specific behavior.
- * Additional Information on A-Frame components can be found here: [A-Frame Docs: Component](https://aframe.io/docs/0.8.0/core/component.html)
+ * Additional information on A-Frame components can be found here: [Component](https://aframe.io/docs/0.8.0/core/component.html)
  *
  *
 * @example
@@ -29,8 +29,11 @@
 *   tick() {
 *       ...
 *   }
-*}
+* }
 * ```
+*
+* See a complete [example](https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/position_logger_component)
+* of using `ComponentWrapper` to build an entity position logger.
 */
 export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System = AFrame.System> implements AFrame.Component<SCHEMA, SYSTEM> {
     el: AFrame.Entity;
@@ -81,7 +84,7 @@ export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFram
  * Like components, there are default implementations for component lifecycle
  * methods such as init(), play(), pause(), and tick()
  * that can be overridden.
- * Additional Information on A-Frame systems can be found here: [A-Frame Docs: System](https://aframe.io/docs/0.8.0/core/systems.html)
+ * Additional information on A-Frame systems can be found here: [System](https://aframe.io/docs/0.8.0/core/systems.html)
  *
  *
 * @example
@@ -96,6 +99,9 @@ export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFram
 *}
 *
 * ```
+*
+* See a complete [example](https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/sphere_registry_system)
+* of using `SystemWrapper` to build an entity registry system.
 */
 export declare abstract class SystemWrapper<SCHEMA = {}> implements AFrame.System {
     data: SCHEMA;
