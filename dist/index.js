@@ -213,6 +213,25 @@ exports.SystemWrapper = SystemWrapper;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Entity builder allows you to create A-Frame entities, set attributes,
+ * and attach them to the scene other A-Frame elements.
+ *
+ *
+* @example
+* ```typescript
+*
+* EntityBuilder.create("a-text", {
+*    id: "hello-text",
+*    value: "Hello Word!",
+*    color: "blue",
+*    position: "-1 2 0",
+*}).attachTo(scene)
+* ```
+*
+* See a complete [example](https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/position_logger_component)
+* of using `ComponentWrapper` to build an entity position logger.
+*/
 var EntityBuilder = /** @class */function () {
     function EntityBuilder(type, attributes) {
         this.entity = document.createElement(type);
@@ -229,6 +248,9 @@ var EntityBuilder = /** @class */function () {
         }
         return builder;
     };
+    /***
+     * @hidden
+     */
     EntityBuilder.prototype.set = function (a, b, c) {
         if (!!b && !!c) {
             this.entity.setAttribute(a, b, c);
@@ -239,6 +261,19 @@ var EntityBuilder = /** @class */function () {
         }
         return this;
     };
+    /**
+    * Using the setAttributes method, you can pass attributes and data to your entity.
+    *
+    * @example
+    * ```typescript
+    *
+    * const entity = EntityBuilder.create("a-text", {
+    *    position: "-1 2 0",
+    *})
+    * entity.setAttribute({color: "red"})
+    * entity.setAttribute({data: {name: "red entity", value: 10}})
+    * ```
+    */
     EntityBuilder.prototype.setAttributes = function (attributes) {
         var _this = this;
         Object.keys(attributes).forEach(function (k) {
@@ -246,9 +281,26 @@ var EntityBuilder = /** @class */function () {
         });
         return this;
     };
+    /**
+    * toEntity returns the entity itself.
+    */
     EntityBuilder.prototype.toEntity = function () {
         return this.entity;
     };
+    /**
+    * Using the attachTo method, you can append your entity to the scene or other specified entity.
+    * If a receiving element is not defined, the entity will attach to the A-Frame scene by default.
+    * If you do define a parent element (another entity, scene, component, or node), the entity will be appended as a child.
+    * @example
+    * ```typescript
+    *
+    * const boxHolder = document.getElementById("box-holder")
+    * const entity = EntityBuilder.create("a-box", {
+    *    position: "-1 2 0",
+    *})
+    * entity.attachTo(boxHolder)
+    * ```
+    */
     EntityBuilder.prototype.attachTo = function (parent) {
         if (!parent) {
             // attach to the scene by default

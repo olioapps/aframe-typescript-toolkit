@@ -67,6 +67,27 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Entity builder allows you to create A-Frame entities, set attributes,
+						and attach them to the scene other A-Frame elements.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>example</dt>
+						<dd><pre><code class="language-typescript">
+EntityBuilder.create(<span class="hljs-string">"a-text"</span>, {
+   id: <span class="hljs-string">"hello-text"</span>,
+   value: <span class="hljs-string">"Hello Word!"</span>,
+   color: <span class="hljs-string">"blue"</span>,
+   position: <span class="hljs-string">"-1 2 0"</span>,
+}).attachTo(scene)</code></pre>
+							<p>See a complete <a href="https://github.com/olioapps/aframe-typescript-toolkit/tree/master/examples/position_logger_component">example</a>
+							of using <code>ComponentWrapper</code> to build an entity position logger.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -95,7 +116,6 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_entity_builder_.entitybuilder.html#attachto" class="tsd-kind-icon">attach<wbr>To</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_entity_builder_.entitybuilder.html#set" class="tsd-kind-icon">set</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_entity_builder_.entitybuilder.html#setattributes" class="tsd-kind-icon">set<wbr>Attributes</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_entity_builder_.entitybuilder.html#toentity" class="tsd-kind-icon">to<wbr>Entity</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_entity_builder_.entitybuilder.html#create" class="tsd-kind-icon">create</a></li>
@@ -116,7 +136,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/988df0d/src/entity_builder.ts#L8">entity_builder.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/6c87845/src/entity_builder.ts#L29">entity_builder.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -141,7 +161,7 @@
 					<div class="tsd-signature tsd-kind-icon">entity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Entity</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/988df0d/src/entity_builder.ts#L8">entity_builder.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/6c87845/src/entity_builder.ts#L29">entity_builder.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -158,42 +178,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/988df0d/src/entity_builder.ts#L49">entity_builder.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/6c87845/src/entity_builder.ts#L101">entity_builder.ts:101</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Using the attachTo method, you can append your entity to the scene or other specified entity.
+										If a receiving element is not defined, the entity will attach to the A-Frame scene by default.
+									If you do define a parent element (another entity, scene, component, or node), the entity will be appended as a child.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript">
+<span class="hljs-keyword">const</span> boxHolder = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"box-holder"</span>)
+<span class="hljs-keyword">const</span> entity = EntityBuilder.create(<span class="hljs-string">"a-box"</span>, {
+   position: <span class="hljs-string">"-1 2 0"</span>,
+})
+entity.attachTo(boxHolder)</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <a href="_entity_builder_.entitybuilder.html" class="tsd-signature-type">EntityBuilder</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ANode</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Scene</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Entity</span><span class="tsd-signature-symbol"> | </span><a href="_aframe_wrapper_.componentwrapper.html" class="tsd-signature-type">ComponentWrapper</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_entity_builder_.entitybuilder.html" class="tsd-signature-type">EntityBuilder</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="set" class="tsd-anchor"></a>
-					<h3>set</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, b<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, c<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_entity_builder_.entitybuilder.html" class="tsd-signature-type">EntityBuilder</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/988df0d/src/entity_builder.ts#L27">entity_builder.ts:27</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> b: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> c: <span class="tsd-signature-type">__type</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_entity_builder_.entitybuilder.html" class="tsd-signature-type">EntityBuilder</a></h4>
@@ -210,9 +218,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/988df0d/src/entity_builder.ts#L38">entity_builder.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/6c87845/src/entity_builder.ts#L74">entity_builder.ts:74</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Using the setAttributes method, you can pass attributes and data to your entity.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-typescript">
+<span class="hljs-keyword">const</span> entity = EntityBuilder.create(<span class="hljs-string">"a-text"</span>, {
+   position: <span class="hljs-string">"-1 2 0"</span>,
+})
+entity.setAttribute({color: <span class="hljs-string">"red"</span>})
+entity.setAttribute({data: {name: <span class="hljs-string">"red entity"</span>, value: <span class="hljs-number">10</span>}})</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -233,9 +256,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/988df0d/src/entity_builder.ts#L45">entity_builder.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/6c87845/src/entity_builder.ts#L83">entity_builder.ts:83</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>toEntity returns the entity itself.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Entity</span></h4>
 						</li>
 					</ul>
@@ -250,7 +278,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/988df0d/src/entity_builder.ts#L17">entity_builder.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/olioapps/aframe-typescript-toolkit/blob/6c87845/src/entity_builder.ts#L38">entity_builder.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -303,9 +331,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_entity_builder_.entitybuilder.html#attachto" class="tsd-kind-icon">attach<wbr>To</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_entity_builder_.entitybuilder.html#set" class="tsd-kind-icon">set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_entity_builder_.entitybuilder.html#setattributes" class="tsd-kind-icon">set<wbr>Attributes</a>
