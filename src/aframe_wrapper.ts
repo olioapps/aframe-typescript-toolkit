@@ -119,11 +119,10 @@ export abstract class SystemWrapper<SCHEMA = {}>
     implements AFrame.System {
 
     data: SCHEMA
-    schema: AFrame.Schema<SCHEMA>
-    system: any
+    schema: SCHEMA
     name: string
 
-    constructor(name: string, schema?: AFrame.Schema<SCHEMA>) {
+    constructor(name: string, schema?: SCHEMA) {
         this.name = name
         this.schema = schema
     }
