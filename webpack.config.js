@@ -29,7 +29,7 @@ const plugins = [
       out: './docs',
       module: 'commonjs',
       target: 'es5',
-      exclude: ['**/node_modules/**/*.*', '**/examples/**/*.*'],
+      exclude: ['**/node_modules/**/*.*', '**/examples/**/*.*', "**/.history/**"],
       experimentalDecorators: true,
       excludeExternals: true
   })
