@@ -45,10 +45,11 @@ export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFram
     register(): this;
     registerCallback(callbackName: string, fn: Function): void;
 }
-export declare abstract class SystemWrapper<SCHEMA = {}> implements AFrame.System {
+export declare abstract class SystemWrapper<SCHEMA extends {
+    [key: string]: any;
+}> implements AFrame.System {
     data: SCHEMA;
     schema: AFrame.Schema<SCHEMA>;
-    system: any;
     name: string;
     constructor(name: string, schema?: AFrame.Schema<SCHEMA>);
     init(): void;

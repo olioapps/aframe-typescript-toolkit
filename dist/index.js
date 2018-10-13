@@ -18,10 +18,10 @@ exports.EntityBuilder = entity_builder_1.EntityBuilder;
 
 "use strict";
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// helpers
 
 Object.defineProperty(exports, "__esModule", { value: true });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// helpers
 /***
  * @hidden
  */
@@ -120,7 +120,7 @@ exports.ComponentWrapper = ComponentWrapper;
 var SystemWrapper = /** @class */function () {
     function SystemWrapper(name, schema) {
         this.name = name;
-        this.schema = schema;
+        this.schema = schema || {};
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // default aframe core function implementations
