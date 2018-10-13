@@ -61,13 +61,3 @@ export declare abstract class SystemWrapper<SCHEMA extends {
     merge(): void;
     register(): void;
 }
-interface PositionLoggerSchema {
-    readonly intervalTsMs: number;
-}
-export declare class PositionLogger extends ComponentWrapper<PositionLoggerSchema> {
-    lastTs: number;
-    constructor();
-    init(): void;
-    tick(): void;
-}
-export {};
