@@ -1,3 +1,4 @@
+import { EntityBuilder } from "./entity_builder"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // helpers
 
@@ -115,16 +116,16 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
     }
 }
 
-export abstract class SystemWrapper<SCHEMA = {}>
+export abstract class SystemWrapper<SCHEMA extends { [key: string]: any }>
     implements AFrame.System {
 
     data: SCHEMA
-    schema: SCHEMA
+    schema: AFrame.Schema<SCHEMA>
     name: string
 
-    constructor(name: string, schema?: SCHEMA) {
+    constructor(name: string, schema?: AFrame.Schema<SCHEMA>) {
         this.name = name
-        this.schema = schema
+        this.schema = schema || {}
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
