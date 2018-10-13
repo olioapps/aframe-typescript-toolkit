@@ -36,7 +36,7 @@ if (!isProd) {
 
 var config = {
   devtool: isProd ? "hidden-source-map" : "source-map",
-  context: path.resolve("./src"),
+  context: path.resolve("."),
   entry: {
     app: "./index.ts"
   },
