@@ -116,7 +116,7 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
     }
 }
 
-export abstract class SystemWrapper<SCHEMA extends { [key: string]: any }>
+export abstract class SystemWrapper<SCHEMA extends { [key: string]: any } = {}>
     implements AFrame.System {
 
     data: SCHEMA
