@@ -105,6 +105,12 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
     }
 
     register() {
+        // unregister any existing component
+        if (!!AFRAME.components[this.name]) {
+            console.log(`WARNING -- unregistering already registered component with name "${this.name}".`)
+            delete AFRAME.components[this.name]
+        }
+
         this.merge()
         AFRAME.registerComponent(this.name, this)
 
