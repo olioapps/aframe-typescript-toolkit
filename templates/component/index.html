@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+      
+        <script type="text/javascript" src="dist-umd/index.js"></script>
+    </head>
+
+    <body>
+        <a-scene embedded antialias="true">
+            <a-sphere color="red" 
+            position="-1 2 -5"
+            color-component
+        ></a-sphere>
+        <a-box
+            position="2 3 -10"
+            color-component
+        ></a-box>
+        <a-box
+           id="box-holder"
+           color="green"
+        ></a-box>
+        <a-sky color="#ECECEC"></a-sky>
+        <a-light position="0 10 0" color="white" type="point"></a-light>
+       
+    </a-scene>
+    </body>
+</html>
