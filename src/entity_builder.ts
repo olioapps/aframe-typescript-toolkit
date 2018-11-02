@@ -4,6 +4,12 @@ export interface Attributes {
     [key: string]: {}
 }
 
+export interface EntityBuilderMeta {
+    readonly type?: string
+    readonly attributes: Attributes
+    readonly children?: EntityBuilderMeta[]
+}
+
 export class EntityBuilder {
     private entity: AFrame.Entity
 
@@ -14,7 +20,7 @@ export class EntityBuilder {
         }
     }
 
-    static create(type: string, attributes: Attributes, children?: EntityBuilder[]): EntityBuilder {
+    static create(type: string = "a-entity", attributes: Attributes, children?: EntityBuilder[]): EntityBuilder {
         const builder = new EntityBuilder(type, attributes)
         if (!!children) {
             children.forEach( c => {

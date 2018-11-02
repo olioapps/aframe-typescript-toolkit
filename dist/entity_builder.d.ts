@@ -3,6 +3,11 @@ import { ComponentWrapper } from "./aframe_wrapper";
 export interface Attributes {
     [key: string]: {};
 }
+export interface EntityBuilderMeta {
+    readonly type?: string;
+    readonly attributes: Attributes;
+    readonly children?: EntityBuilderMeta[];
+}
 export declare class EntityBuilder {
     private entity;
     constructor(type: string, attributes?: Attributes);

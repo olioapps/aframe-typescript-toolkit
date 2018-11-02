@@ -1,4 +1,5 @@
 /// <reference types="aframe" />
+import { EntityBuilderMeta } from "./entity_builder";
 /**
  * Extend this class to create strongly typed A-Frame components.
  * Default implementations for component lifecycle methods such as init(), tick(), and others are provided,
@@ -42,8 +43,11 @@ export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFram
      */
     merge(): void;
     destroy(): void;
+    postInit(): void;
+    createChildren(): EntityBuilderMeta[];
     register(): this;
     registerCallback(callbackName: string, fn: Function): void;
+    attachToEntity(meta: EntityBuilderMeta[] | EntityBuilderMeta): void;
 }
 export declare abstract class SystemWrapper<SCHEMA extends {
     [key: string]: any;

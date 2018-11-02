@@ -1,4 +1,6 @@
-import { EntityBuilder } from "./entity_builder"
+import { EntityBuilder, Attributes, EntityBuilderMeta } from "./entity_builder"
+import { ENGINE_METHOD_ALL } from "constants";
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // helpers
 
@@ -90,6 +92,12 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
      * @hidden
      */
     merge() {
+        const originalInit = this.init
+        this.init = function() {
+            originalInit.apply(this, arguments)
+            const toCreate = this.createChildren()
+            this.attachToEntity(toCreate)
+        }
         const funcs = getInstanceMethodNames(this, Object.prototype)
         funcs.forEach( k => this[k] = this[k])
     }
@@ -102,6 +110,14 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
         if (!!parent) {
             parent.removeChild(this.el)
         }
+    }
+
+    postInit() {
+        // remove
+    }
+    
+    createChildren(): EntityBuilderMeta[] {
+        return []
     }
 
     register() {
@@ -119,6 +135,16 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
 
     registerCallback(callbackName: string, fn: Function) {
         this.el.addEventListener(callbackName, fn.bind(this))
+    }
+
+    attachToEntity(meta: EntityBuilderMeta[] | EntityBuilderMeta) {
+        if (Array.isArray(meta)) {
+            meta.map( m => {
+                EntityBuilder.create(m.type, m.attributes).attachTo(this.el)
+            })
+        } else {
+            EntityBuilder.create(meta.type, meta.attributes).attachTo(this.el)
+        }
     }
 }
 

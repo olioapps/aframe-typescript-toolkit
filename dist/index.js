@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,11 +71,69 @@
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var aframe_wrapper_1 = __webpack_require__(1);
-exports.ComponentWrapper = aframe_wrapper_1.ComponentWrapper;
-exports.SystemWrapper = aframe_wrapper_1.SystemWrapper;
-var entity_builder_1 = __webpack_require__(2);
-exports.EntityBuilder = entity_builder_1.EntityBuilder;
+var EntityBuilder = /** @class */function () {
+    function EntityBuilder(type, attributes) {
+        this.entity = document.createElement(type);
+        if (attributes) {
+            this.setAttributes(attributes);
+        }
+    }
+    EntityBuilder.create = function (type, attributes, children) {
+        if (type === void 0) {
+            type = "a-entity";
+        }
+        var builder = new EntityBuilder(type, attributes);
+        if (!!children) {
+            children.forEach(function (c) {
+                c.attachTo(builder.entity);
+            });
+        }
+        return builder;
+    };
+    EntityBuilder.prototype.set = function (a, b, c) {
+        if (!!b && !!c) {
+            this.entity.setAttribute(a, b, c);
+        } else if (!!b) {
+            this.entity.setAttribute(a, b || "");
+        } else {
+            this.entity.setAttribute(a, "");
+        }
+        return this;
+    };
+    EntityBuilder.prototype.setAttributes = function (attributes) {
+        var _this = this;
+        Object.keys(attributes).forEach(function (k) {
+            _this.set(k, attributes[k]);
+        });
+        return this;
+    };
+    EntityBuilder.prototype.toEntity = function () {
+        return this.entity;
+    };
+    EntityBuilder.prototype.attachTo = function (parent) {
+        if (!parent) {
+            // attach to the scene by default
+            document.querySelector("a-scene").appendChild(this.entity);
+            return this;
+        }
+        // a parent was specified
+        if ("el" in parent) {
+            // there's an element in this parent; attach the entity
+            // being created there
+            parent.el.appendChild(this.entity);
+        } else {
+            // there isn't; attach directly
+            if ("appendChild" in parent) {
+                parent.appendChild(this.entity);
+            } else {
+                // parent.attach(this.entity)
+            }
+        }
+        return this;
+    };
+    return EntityBuilder;
+}();
+exports.EntityBuilder = EntityBuilder;
 
 /***/ }),
 /* 1 */
@@ -85,6 +143,21 @@ exports.EntityBuilder = entity_builder_1.EntityBuilder;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var aframe_wrapper_1 = __webpack_require__(2);
+exports.ComponentWrapper = aframe_wrapper_1.ComponentWrapper;
+exports.SystemWrapper = aframe_wrapper_1.SystemWrapper;
+var entity_builder_1 = __webpack_require__(0);
+exports.EntityBuilder = entity_builder_1.EntityBuilder;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var entity_builder_1 = __webpack_require__(0);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // helpers
 /***
@@ -158,6 +231,12 @@ var ComponentWrapper = /** @class */function () {
      */
     ComponentWrapper.prototype.merge = function () {
         var _this = this;
+        var originalInit = this.init;
+        this.init = function () {
+            originalInit.apply(this, arguments);
+            var toCreate = this.createChildren();
+            this.attachToEntity(toCreate);
+        };
         var funcs = getInstanceMethodNames(this, Object.prototype);
         funcs.forEach(function (k) {
             return _this[k] = _this[k];
@@ -171,6 +250,12 @@ var ComponentWrapper = /** @class */function () {
             parent.removeChild(this.el);
         }
     };
+    ComponentWrapper.prototype.postInit = function () {
+        // remove
+    };
+    ComponentWrapper.prototype.createChildren = function () {
+        return [];
+    };
     ComponentWrapper.prototype.register = function () {
         // unregister any existing component
         if (!!AFRAME.components[this.name]) {
@@ -183,6 +268,16 @@ var ComponentWrapper = /** @class */function () {
     };
     ComponentWrapper.prototype.registerCallback = function (callbackName, fn) {
         this.el.addEventListener(callbackName, fn.bind(this));
+    };
+    ComponentWrapper.prototype.attachToEntity = function (meta) {
+        var _this = this;
+        if (Array.isArray(meta)) {
+            meta.map(function (m) {
+                entity_builder_1.EntityBuilder.create(m.type, m.attributes).attachTo(_this.el);
+            });
+        } else {
+            entity_builder_1.EntityBuilder.create(meta.type, meta.attributes).attachTo(this.el);
+        }
     };
     return ComponentWrapper;
 }();
@@ -216,75 +311,6 @@ var SystemWrapper = /** @class */function () {
     return SystemWrapper;
 }();
 exports.SystemWrapper = SystemWrapper;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var EntityBuilder = /** @class */function () {
-    function EntityBuilder(type, attributes) {
-        this.entity = document.createElement(type);
-        if (attributes) {
-            this.setAttributes(attributes);
-        }
-    }
-    EntityBuilder.create = function (type, attributes, children) {
-        var builder = new EntityBuilder(type, attributes);
-        if (!!children) {
-            children.forEach(function (c) {
-                c.attachTo(builder.entity);
-            });
-        }
-        return builder;
-    };
-    EntityBuilder.prototype.set = function (a, b, c) {
-        if (!!b && !!c) {
-            this.entity.setAttribute(a, b, c);
-        } else if (!!b) {
-            this.entity.setAttribute(a, b || "");
-        } else {
-            this.entity.setAttribute(a, "");
-        }
-        return this;
-    };
-    EntityBuilder.prototype.setAttributes = function (attributes) {
-        var _this = this;
-        Object.keys(attributes).forEach(function (k) {
-            _this.set(k, attributes[k]);
-        });
-        return this;
-    };
-    EntityBuilder.prototype.toEntity = function () {
-        return this.entity;
-    };
-    EntityBuilder.prototype.attachTo = function (parent) {
-        if (!parent) {
-            // attach to the scene by default
-            document.querySelector("a-scene").appendChild(this.entity);
-            return this;
-        }
-        // a parent was specified
-        if ("el" in parent) {
-            // there's an element in this parent; attach the entity
-            // being created there
-            parent.el.appendChild(this.entity);
-        } else {
-            // there isn't; attach directly
-            if ("appendChild" in parent) {
-                parent.appendChild(this.entity);
-            } else {
-                // parent.attach(this.entity)
-            }
-        }
-        return this;
-    };
-    return EntityBuilder;
-}();
-exports.EntityBuilder = EntityBuilder;
 
 /***/ })
 /******/ ]);
