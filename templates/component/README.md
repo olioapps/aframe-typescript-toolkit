@@ -18,10 +18,10 @@ The scene (defined in index.html) is an easy way to see your component in action
 
 1. `yarn install` to install the dependencies.
 
-2. `yarn build` to create CDN publishable artifacts in the `dist-umd` folder.
+2. `yarn build` to create CDN publishable artifacts in the `dist` folder.
 
-3. run `yarn serve` to see the component in action at http://localhost:8081/. 
+3. run `yarn start` to see the component in action at http://localhost:8081/. 
 
 ## Sharing your Custom Component
 
-Exposing `dist-umd` via a CDN such as jsdelivr will make it easy for other developers to use your a-frame component.
+Exposing `dist` via a CDN such as jsdelivr will make it easy for other developers to use your a-frame component.
