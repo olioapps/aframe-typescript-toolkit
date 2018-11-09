@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["AframeToolkitExample"] = factory();
+	else
+		root["AframeToolkitExample"] = factory();
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -232,6 +242,11 @@ var ComponentWrapper = /** @class */function () {
         }
     };
     ComponentWrapper.prototype.register = function () {
+        // unregister any existing component
+        if (!!AFRAME.components[this.name]) {
+            console.log("WARNING -- unregistering already registered component with name \"" + this.name + "\".");
+            delete AFRAME.components[this.name];
+        }
         this.merge();
         AFRAME.registerComponent(this.name, this);
         return this;
@@ -343,3 +358,4 @@ exports.EntityBuilder = EntityBuilder;
 
 /***/ })
 /******/ ]);
+});

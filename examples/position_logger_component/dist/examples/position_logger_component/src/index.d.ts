@@ -1,4 +1,4 @@
-import { ComponentWrapper } from "../../src/index";
+import { ComponentWrapper } from "../../../src/index";
 interface PositionLoggerSchema {
     readonly intervalTsMs: number;
 }
