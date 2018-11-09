@@ -1,6 +1,6 @@
 {
   "name": "aframe-typescript-toolkit",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "main": "src/index.ts",
   "bin": {
     "aframe-typescript-toolkit": "./index.js"
@@ -17,27 +17,12 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@types/jasmine": "^2.5.53",
-    "@types/lodash": "^4.14.70",
     "awesome-typescript-loader": "^3.2.1",
     "cross-env": "^5.0.1",
-    "css-loader": "^0.28.4",
-    "ejs-loader": "^0.3.0",
     "eslint": "^4.2.0",
-    "html-loader": "^0.4.5",
-    "istanbul-instrumenter-loader": "^2.0.0",
-    "jasmine": "^2.6.0",
-    "jasmine-core": "^2.6.4",
     "karma": "^1.7.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage-istanbul-reporter": "^1.4.1",
-    "karma-jasmine": "^1.1.0",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-spec-reporter": "0.0.31",
-    "karma-webpack": "^2.0.4",
     "rimraf": "^2.6.1",
     "source-map-loader": "^0.2.1",
-    "style-loader": "^0.18.2",
     "tslint": "^5.5.0",
     "tslint-loader": "^3.5.3",
     "typedoc": "^0.12.0",
@@ -55,7 +40,6 @@
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
-    "lodash": "^4.17.4",
     "inquirer": "^6.2.0"
   }
 }
