@@ -1,4 +1,4 @@
-import { ComponentWrapper, EntityBuilder } from "../../src/index"
+import { ComponentWrapper, EntityBuilder } from "../../../src/index"
 
 interface PositionLoggerSchema {
     readonly intervalTsMs: number

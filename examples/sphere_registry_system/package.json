@@ -1,39 +1,24 @@
 {
     "name": "aframe-typescript-toolkit-example",
     "version": "0.0.1",
-    "main": "index.ts",
+    "main": "src/index.ts",
     "scripts": {
       "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail",
       "clean": "npm cache clear && rimraf -- dist",
-      "test": "karma start"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/olioapps/aframe-typescript-toolkit.git"
+      "test": "karma start",
+      "start": "npm run server:dev",
+      "server": "npm run server:dev",
+      "server:dev": "webpack-dashboard -- webpack-dev-server --config ./webpack.config.js --hot --inline --progress --watch --open"
     },
     "license": "ISC",
     "devDependencies": {
-      "@types/jasmine": "^2.5.53",
-      "@types/lodash": "^4.14.70",
       "awesome-typescript-loader": "^3.2.1",
       "cross-env": "^5.0.1",
-      "css-loader": "^0.28.4",
-      "ejs-loader": "^0.3.0",
       "eslint": "^4.2.0",
-      "html-loader": "^0.4.5",
-      "istanbul-instrumenter-loader": "^2.0.0",
-      "jasmine": "^2.6.0",
-      "jasmine-core": "^2.6.4",
+      "html-webpack-plugin": "^2.29.0",
       "karma": "^1.7.0",
-      "karma-chrome-launcher": "^2.2.0",
-      "karma-coverage-istanbul-reporter": "^1.4.1",
-      "karma-jasmine": "^1.1.0",
-      "karma-sourcemap-loader": "^0.3.7",
-      "karma-spec-reporter": "0.0.31",
-      "karma-webpack": "^2.0.4",
       "rimraf": "^2.6.1",
       "source-map-loader": "^0.2.1",
-      "style-loader": "^0.18.2",
       "tslint": "^5.5.0",
       "tslint-loader": "^3.5.3",
       "typescript": "^3.0.1",
@@ -46,6 +31,7 @@
       "babel-core": "^6.22.1",
       "babel-eslint": "^7.1.1",
       "babel-loader": "^6.2.10",
-      "lodash": "^4.17.4"
+      "raw-loader": "^0.5.1"
     }
-}
+  }
+  
