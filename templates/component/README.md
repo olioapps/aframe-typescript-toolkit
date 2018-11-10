@@ -23,5 +23,4 @@ The scene (defined in src/index.html) is an easy way to see your component in ac
 ## Sharing your Custom Component
 Run `yarn build` to create CDN publishable artifacts in the `dist` folder.
 
-
 Exposing `dist` via a CDN such as jsdelivr will make it easy for other developers to use your a-frame component.

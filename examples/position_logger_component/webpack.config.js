@@ -3,7 +3,7 @@ const path = require("path");
 const DashboardPlugin = require("webpack-dashboard/plugin");
 const nodeEnv = process.env.NODE_ENV || "development";
 const isProd = nodeEnv === "production";
-const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -20,13 +20,8 @@ const plugins = [
       }
     }
   }),
-  new TypedocWebpackPlugin({
-      out: './docs',
-      module: 'commonjs',
-      target: 'es5',
-      exclude: ['**/node_modules/**/*.*', '**/examples/**/*.*', "**/.history/**"],
-      experimentalDecorators: true,
-      excludeExternals: true
+  new HtmlWebpackPlugin({
+    template: 'src/index.html'
   })
 ];
 
@@ -36,9 +31,9 @@ if (!isProd) {
 
 var config = {
   devtool: isProd ? "hidden-source-map" : "source-map",
-  context: path.resolve("."),
+  context: path.resolve("./"),
   entry: {
-    app: "./index.ts"
+    app: "./src/index.ts"
   },
   output: {
     path: path.resolve("./dist"),
@@ -47,6 +42,12 @@ var config = {
     devtoolModuleFilenameTemplate: function(info) {
       return "file:///" + info.absoluteResourcePath;
     }
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js',
+    library: 'AframeToolkitExample',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
@@ -60,13 +61,25 @@ var config = {
         test: /\.(js|ts)$/,
         loader: "babel-loader",
         exclude: [/\/node_modules\//]
+      },
+      {
+        test: /\.html$/,
+        loader: "raw-loader" // loaders: ['raw-loader'] is also perfectly acceptable.
       }
     ]
   },
   resolve: {
     extensions: [".ts", ".js"]
   },
-  plugins: plugins
+  plugins: plugins,
+  devServer: {
+    contentBase: path.join(__dirname, '/src'),
+    compress: true,
+    port: 3000,
+    hot: true,
+    disableHostCheck: true,
+    watchContentBase: true,
+  }
 };
 
 module.exports = config;

@@ -47,7 +47,7 @@ export declare abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFram
 }
 export declare abstract class SystemWrapper<SCHEMA extends {
     [key: string]: any;
-}> implements AFrame.System {
+} = {}> implements AFrame.System {
     data: SCHEMA;
     schema: AFrame.Schema<SCHEMA>;
     name: string;
