@@ -3,7 +3,7 @@
   "version": "0.0.17",
   "main": "src/index.ts",
   "bin": {
-    "aframe-typescript-toolkit": "./index.js"
+    "aframe-typescript-toolkit": "./cli.js"
   },
   "preferGlobal": true,
   "scripts": {
