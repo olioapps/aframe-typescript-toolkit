@@ -7,6 +7,7 @@
   },
   "preferGlobal": true,
   "scripts": {
+    "cli": "node cli.js",
     "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail",
     "clean": "npm cache clear && rimraf -- dist",
     "test": "karma start"
