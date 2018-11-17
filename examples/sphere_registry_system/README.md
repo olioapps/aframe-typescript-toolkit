@@ -7,9 +7,9 @@ You can click the link at the top of the page to add more spheres; watch the sph
 # Building the example
 
 1. `yarn install` to install the dependencies.
+2. `yarn build` to build the project.
+3. `yarn server` allows you to see the result in a WebVR ready browser at http://localhost:3000/.
 
-2. `yarn build` to create CDN publishable artifacts in the `dist-umd` folder.
-
-# Making the component globally useable
-
-Exposing `dist-umd` via a CDN such as rawgit or jsdelivr will make it easy for 3rd party developers to use systems such as the sphere registry.
+## Sharing your Custom Component
+Run `yarn build` to create CDN publishable artifacts in the `dist` folder.
+Exposing `dist` via a CDN such as jsdelivr will make it easy for other developers to use your a-frame system.

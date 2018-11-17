@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+      
+        <script type="text/javascript" src="index.js"></script>
+        <script>
+            const randomIn = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+            const addBall = () => {
+                let color = ""
+                switch (randomIn(0, 3)) {
+                    case 0: color = "red"
+                        break
+                    case 1: color = "blue"
+                        break
+                    case 2: color = "orange"
+                        break
+                    case 3: color = "black"
+                        break
+                    default:
+                        color = "cyan"
+                }
+
+                const x = randomIn(-2, 2)
+                const y = randomIn(-2, 2)
+                const z = randomIn(-5, -1)
+
+                const el = document.createElement("a-sphere")
+                el.setAttribute("position", `${x} ${y} ${z}`)
+                el.setAttribute("color", color)
+                el.setAttribute("sphere-registry", "color: " + color + "; position: " + `${x},${y},${z}`)
+                const scene = document.getElementById("scene")
+                scene.appendChild(el)
+            }
+
+            window.addEventListener("load", () => {
+                for (let i = 0; i < 3; i++) {
+                    addBall()
+                }
+            })
+
+        </script>
+    </head>
+
+    <body>
+        <a href="javascript:" onClick="javascript:addBall()">Click here to add tracked spheres</a>
+        <a-scene embedded antialias="true" id="scene">
+            <a-sky color="#ECECEC"></a-sky>
+            <a-text id="board"
+                value="CHANGE ME"
+                position="-3 2 -2"   
+                color="red"
+            ></a-text>
+            <a-light position="0 10 0" color="white" type="point"></a-light>
+        </a-scene>
+    </body>
+</html>

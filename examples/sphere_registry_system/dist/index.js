@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["AframeToolkitExample"] = factory();
+	else
+		root["AframeToolkitExample"] = factory();
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -88,7 +98,7 @@ var __extends = this && this.__extends || function () {
     };
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(1);
+var aframe_typescript_toolkit_1 = __webpack_require__(1);
 var SphereRegistryComponent = /** @class */function (_super) {
     __extends(SphereRegistryComponent, _super);
     function SphereRegistryComponent() {
@@ -105,7 +115,7 @@ var SphereRegistryComponent = /** @class */function (_super) {
         this.system.add(this);
     };
     return SphereRegistryComponent;
-}(index_1.ComponentWrapper);
+}(aframe_typescript_toolkit_1.ComponentWrapper);
 exports.SphereRegistryComponent = SphereRegistryComponent;
 var SphereRegistrySystem = /** @class */function (_super) {
     __extends(SphereRegistrySystem, _super);
@@ -125,7 +135,7 @@ var SphereRegistrySystem = /** @class */function (_super) {
         board.setAttribute("value", newText);
     };
     return SphereRegistrySystem;
-}(index_1.SystemWrapper);
+}(aframe_typescript_toolkit_1.SystemWrapper);
 exports.SphereRegistrySystem = SphereRegistrySystem;
 new SphereRegistrySystem().register();
 
@@ -135,7 +145,6 @@ new SphereRegistrySystem().register();
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", { value: true });
 var aframe_wrapper_1 = __webpack_require__(2);
 exports.ComponentWrapper = aframe_wrapper_1.ComponentWrapper;
@@ -143,12 +152,12 @@ exports.SystemWrapper = aframe_wrapper_1.SystemWrapper;
 var entity_builder_1 = __webpack_require__(3);
 exports.EntityBuilder = entity_builder_1.EntityBuilder;
 
+
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
 
 Object.defineProperty(exports, "__esModule", { value: true });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,7 +176,8 @@ var getInstanceMethodNames = function (obj, stop) {
     var array = [];
     var proto = Object.getPrototypeOf(obj);
     while (proto && proto !== stop) {
-        Object.getOwnPropertyNames(proto).forEach(function (name) {
+        Object.getOwnPropertyNames(proto)
+            .forEach(function (name) {
             if (name !== "constructor") {
                 if (hasMethod(proto, name)) {
                     array.push(name);
@@ -183,7 +193,7 @@ var getInstanceMethodNames = function (obj, stop) {
  * Default implementations for component lifecycle methods such as init(), tick(), and others are provided,
  * and can be overridden for your component's specific behavior.
  */
-var ComponentWrapper = /** @class */function () {
+var ComponentWrapper = /** @class */ (function () {
     function ComponentWrapper(name, schema) {
         this.name = name;
         this.schema = schema || {};
@@ -193,30 +203,30 @@ var ComponentWrapper = /** @class */function () {
     /**
      * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_remove.
      */
-    ComponentWrapper.prototype.remove = function () {};
+    ComponentWrapper.prototype.remove = function () { };
     /**
      * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_update.
      */
-    ComponentWrapper.prototype.update = function (oldData) {};
+    ComponentWrapper.prototype.update = function (oldData) { };
     /**
      * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_updateschema.
      */
-    ComponentWrapper.prototype.extendSchema = function (update) {};
-    ComponentWrapper.prototype.flushToDOM = function () {};
+    ComponentWrapper.prototype.extendSchema = function (update) { };
+    ComponentWrapper.prototype.flushToDOM = function () { };
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // default aframe core function implementations
     /**
      * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_init.
      */
-    ComponentWrapper.prototype.init = function () {};
+    ComponentWrapper.prototype.init = function () { };
     /**
      * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_pause.
      */
-    ComponentWrapper.prototype.pause = function () {};
+    ComponentWrapper.prototype.pause = function () { };
     /**
      * Wraps https://aframe.io/docs/0.8.0/core/component.html#definition_lifecycle_handler_methods_play.
      */
-    ComponentWrapper.prototype.play = function () {};
+    ComponentWrapper.prototype.play = function () { };
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations
     /***
@@ -225,9 +235,7 @@ var ComponentWrapper = /** @class */function () {
     ComponentWrapper.prototype.merge = function () {
         var _this = this;
         var funcs = getInstanceMethodNames(this, Object.prototype);
-        funcs.forEach(function (k) {
-            return _this[k] = _this[k];
-        });
+        funcs.forEach(function (k) { return _this[k] = _this[k]; });
     };
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations
@@ -238,6 +246,11 @@ var ComponentWrapper = /** @class */function () {
         }
     };
     ComponentWrapper.prototype.register = function () {
+        // unregister any existing component
+        if (!!AFRAME.components[this.name]) {
+            console.log("WARNING -- unregistering already registered component with name \"" + this.name + "\".");
+            delete AFRAME.components[this.name];
+        }
         this.merge();
         AFRAME.registerComponent(this.name, this);
         return this;
@@ -246,18 +259,18 @@ var ComponentWrapper = /** @class */function () {
         this.el.addEventListener(callbackName, fn.bind(this));
     };
     return ComponentWrapper;
-}();
+}());
 exports.ComponentWrapper = ComponentWrapper;
-var SystemWrapper = /** @class */function () {
+var SystemWrapper = /** @class */ (function () {
     function SystemWrapper(name, schema) {
         this.name = name;
         this.schema = schema || {};
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // default aframe core function implementations
-    SystemWrapper.prototype.init = function () {};
-    SystemWrapper.prototype.pause = function () {};
-    SystemWrapper.prototype.play = function () {};
+    SystemWrapper.prototype.init = function () { };
+    SystemWrapper.prototype.pause = function () { };
+    SystemWrapper.prototype.play = function () { };
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // special wrapper functions implementations
     /***
@@ -266,17 +279,16 @@ var SystemWrapper = /** @class */function () {
     SystemWrapper.prototype.merge = function () {
         var _this = this;
         var funcs = getInstanceMethodNames(this, Object.prototype);
-        funcs.forEach(function (k) {
-            return _this[k] = _this[k];
-        });
+        funcs.forEach(function (k) { return _this[k] = _this[k]; });
     };
     SystemWrapper.prototype.register = function () {
         this.merge();
         AFRAME.registerSystem(this.name, this);
     };
     return SystemWrapper;
-}();
+}());
 exports.SystemWrapper = SystemWrapper;
+
 
 /***/ }),
 /* 3 */
@@ -284,9 +296,8 @@ exports.SystemWrapper = SystemWrapper;
 
 "use strict";
 
-
 Object.defineProperty(exports, "__esModule", { value: true });
-var EntityBuilder = /** @class */function () {
+var EntityBuilder = /** @class */ (function () {
     function EntityBuilder(type, attributes) {
         this.entity = document.createElement(type);
         if (attributes) {
@@ -305,9 +316,11 @@ var EntityBuilder = /** @class */function () {
     EntityBuilder.prototype.set = function (a, b, c) {
         if (!!b && !!c) {
             this.entity.setAttribute(a, b, c);
-        } else if (!!b) {
+        }
+        else if (!!b) {
             this.entity.setAttribute(a, b || "");
-        } else {
+        }
+        else {
             this.entity.setAttribute(a, "");
         }
         return this;
@@ -333,19 +346,23 @@ var EntityBuilder = /** @class */function () {
             // there's an element in this parent; attach the entity
             // being created there
             parent.el.appendChild(this.entity);
-        } else {
+        }
+        else {
             // there isn't; attach directly
             if ("appendChild" in parent) {
                 parent.appendChild(this.entity);
-            } else {
+            }
+            else {
                 // parent.attach(this.entity)
             }
         }
         return this;
     };
     return EntityBuilder;
-}();
+}());
 exports.EntityBuilder = EntityBuilder;
+
 
 /***/ })
 /******/ ]);
+});

@@ -1,33 +1,26 @@
 {
-  "name": "aframe-typescript-toolkit",
-  "version": "0.0.17",
+  "name": "component-project",
+  "version": "0.0.1",
   "main": "src/index.ts",
-  "bin": {
-    "aframe-typescript-toolkit": "./cli.js"
-  },
-  "preferGlobal": true,
   "scripts": {
-    "cli": "node cli.js",
     "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail",
     "clean": "npm cache clear && rimraf -- dist",
-    "test": "karma start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/olioapps/aframe-typescript-toolkit.git"
+    "test": "karma start",
+    "start": "npm run server:dev",
+    "server": "npm run server:dev",
+    "server:dev": "webpack-dashboard -- webpack-dev-server --config ./webpack.config.js --hot --inline --progress --watch --open"
   },
   "license": "ISC",
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.1",
     "cross-env": "^5.0.1",
     "eslint": "^4.2.0",
+    "html-webpack-plugin": "^2.29.0",
     "karma": "^1.7.0",
     "rimraf": "^2.6.1",
     "source-map-loader": "^0.2.1",
     "tslint": "^5.5.0",
     "tslint-loader": "^3.5.3",
-    "typedoc": "^0.12.0",
-    "typedoc-webpack-plugin": "^1.1.4",
     "typescript": "^3.0.1",
     "webpack": "^3.3.0",
     "webpack-dashboard": "^0.4.0",
@@ -35,12 +28,10 @@
   },
   "dependencies": {
     "@types/aframe": "^0.7.2",
-    "@types/three": "^0.92.21",
-    "@types/webvr-api": "^0.0.35",
-    "aframe": "^0.8.0",
+    "aframe-typescript-toolkit": "0.0.16",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
-    "inquirer": "^6.2.0"
+    "raw-loader": "^0.5.1"
   }
 }
