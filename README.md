@@ -73,13 +73,12 @@ npm run start
 When the development server starts, your browser will automatically open to port `3000` and you will be able to start using the template component right away.
 
 ## Customizing the component
-
 Click on the video below to see how you can edit the program in Visual Studio Code and watch your changes be dynamically applied without explicitly reloading the browser:
 
 [![A-Frame Typescript Toolkit](https://img.youtube.com/vi/bazU6D-LYDI/0.jpg)](https://www.youtube.com/watch?v=bazU6D-LYDI "A-Frame Typescript Toolkit")
 
-## Exporting Custom Components
-Seeing your component run locally is great. Now it is time to export it so it can be used by others. There are many ways to do this. One free and convenient way is through GitHub and RawGit
+### Exporting Custom Components
+Seeing your component run locally is great. Now it is time to export it so it can be used by others. There are many ways to do this. One free and convenient way is through GitHub and [JSDelivr](https://www.jsdelivr.com/).
 
 #### 1. Publish your project to GitHub 
 See [GitHub's docs](https://help.GitHub.com/) if you are not familiar with this process. 
