@@ -68,7 +68,7 @@ Click on the video below to see how you can edit the program in Visual Studio Co
 ---
 
 ### Exporting Custom Components
-Seeing your component run locally is great. Now it is time to export it so it can be used by others. There are many ways to do this. One free and convenient way is through GitHub and RawGit
+Seeing your component run locally is great. Now it is time to export it so it can be used by others. There are many ways to do this. One free and convenient way is through GitHub and [JSDelivr](https://www.jsdelivr.com/).
 
 #### 1. Publish your project to GitHub 
 See [GitHub's docs](https://help.GitHub.com/) if you are not familiar with this process. 
