@@ -78,16 +78,19 @@ Click on the video below to see how you can edit the program in Visual Studio Co
 
 [![A-Frame Typescript Toolkit](https://img.youtube.com/vi/bazU6D-LYDI/0.jpg)](https://www.youtube.com/watch?v=bazU6D-LYDI "A-Frame Typescript Toolkit")
 
----
-
-### Exporting Custom Components
+## Exporting Custom Components
 Seeing your component run locally is great. Now it is time to export it so it can be used by others. There are many ways to do this. One free and convenient way is through GitHub and RawGit
 
 #### 1. Publish your project to GitHub 
 See [GitHub's docs](https://help.GitHub.com/) if you are not familiar with this process. 
 
 #### 2. Create a CDN for your component class
-Expose your `dist/index.js` file to a CDN like https://www.jsdelivr.com/ and it can be used in any A-Frame project like a traditional A-Frame component (or system).
+After building expose your `dist/index.js` file to a CDN like https://www.jsdelivr.com/ and it can be used in any A-Frame project like a traditional A-Frame component (or system).
+
+---
+## Using the toolkit without the CLI
+
+See the [wiki](https://github.com/olioapps/aframe-typescript-toolkit/wiki/Creating-an-AFrame-typescript-project-without-using-the-CLI) for instructions on using the toolkit without the CLI to create Typescript A-Frame classes and components. 
 
 ---
 
