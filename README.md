@@ -6,7 +6,7 @@ Also included is a command line tool which can be invoked to generate easily ext
 
 ---
 
-## Using the command line tool (aka CLI)
+## Using the command line tool (CLI)
 
 You can install the CLI globally, or run it locally from repository source.
 
@@ -40,7 +40,18 @@ Once invoked, the CLI will ask you what type of A-Frame component template to ge
 ? Project name: awesome-component
 ```
 
-In the above example, a directory called `awesome-component` will be created containing all the code you need to develop a typescript A-Frame component, including a live development server.
+In the above example, a directory called `awesome-component` will be created containing all the code you need to develop a typescript A-Frame component, including a live development server. The file structure looks like this: 
+```
+awesome-component
+│   README.md
+│   package.json    
+│   webpack.config.js
+│   tsconfig.json
+│
+└───src
+    │   index.html
+    │   index.ts
+```
 
 ---
 
@@ -61,11 +72,10 @@ npm run start
 
 When the development server starts, your browser will automatically open to port `3000` and you will be able to start using the template component right away.
 
+## Customizing the component
 Click on the video below to see how you can edit the program in Visual Studio Code and watch your changes be dynamically applied without explicitly reloading the browser:
 
 [![A-Frame Typescript Toolkit](https://img.youtube.com/vi/bazU6D-LYDI/0.jpg)](https://www.youtube.com/watch?v=bazU6D-LYDI "A-Frame Typescript Toolkit")
-
----
 
 ### Exporting Custom Components
 Seeing your component run locally is great. Now it is time to export it so it can be used by others. There are many ways to do this. One free and convenient way is through GitHub and [JSDelivr](https://www.jsdelivr.com/).
@@ -74,7 +84,12 @@ Seeing your component run locally is great. Now it is time to export it so it ca
 See [GitHub's docs](https://help.GitHub.com/) if you are not familiar with this process. 
 
 #### 2. Create a CDN for your component class
-Expose your `dist/index.js` file to a CDN like https://www.jsdelivr.com/ and it can be used in any A-Frame project like a traditional A-Frame component (or system).
+After building expose your `dist/index.js` file to a CDN like https://www.jsdelivr.com/ and it can be used in any A-Frame project like a traditional A-Frame component (or system).
+
+---
+## Using the toolkit without the CLI
+
+See the [wiki](https://github.com/olioapps/aframe-typescript-toolkit/wiki/Creating-an-AFrame-typescript-project-without-using-the-CLI) for instructions on using the toolkit without the CLI to create Typescript A-Frame classes and components. 
 
 ---
 
