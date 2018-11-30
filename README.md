@@ -10,9 +10,13 @@ Also included is a command line tool which can be invoked to generate easily ext
 
 You can install the CLI globally, or run it locally from repository source.
 
+### Installation
+
 Install it globally:
 
 ```npm install -g aframe-typescript-toolkit```
+
+### Project Creation
 
 Then run it:
 ```
@@ -53,9 +57,8 @@ awesome-component
     │   index.ts
 ```
 
----
 
-## Running a generated template
+### Running a generated template
 
 1. Change directory into the generated component and install the dependencies:
 
@@ -72,7 +75,7 @@ npm run start
 
 When the development server starts, your browser will automatically open to port `3000` and you will be able to start using the template component right away.
 
-## Customizing the component
+### Customizing the component
 Click on the video below to see how you can edit the program in Visual Studio Code and watch your changes be dynamically applied without explicitly reloading the browser:
 
 [![A-Frame Typescript Toolkit](https://img.youtube.com/vi/bazU6D-LYDI/0.jpg)](https://www.youtube.com/watch?v=bazU6D-LYDI "A-Frame Typescript Toolkit")
