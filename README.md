@@ -106,17 +106,17 @@ EntityBuilder.create("a-text", {
     position: "-1 2 0",
 }).attachTo(scene)
 ```
-See the docs for additional information on [EntityBuilder](dist/docs/classes/_entity_builder_.entitybuilder.html)
+See the docs for additional information on [EntityBuilder](http://htmlpreview.github.io/?https://github.com/olioapps/aframe-typescript-toolkit/blob/master/dist/docs/classes/_entity_builder_.entitybuilder.html)
 
 ### ComponentWrapper
 The ComponentWrapper is a base class for creating strongly typed A-Frame components. Component lifecycle methods such as init(), tick(), and others are provided, and can be overridden to suit your component's specific behavior.
 
-See the [example](examples/position_logger_component) as well as the [ComponentWrapper docs](dist/docs/classes/_aframe_wrapper_.componentwrapper.html) for more details. 
+See the [example](examples/position_logger_component) as well as the [ComponentWrapper docs](http://htmlpreview.github.io/?https://github.com/olioapps/aframe-typescript-toolkit/blob/master/dist/docs/classes/_aframe_wrapper_.componentwrapper.html) for more details. 
 
 ### SystemWrapper
 The SystemWrapper allows you to create typescript A-Frame systems. Components can subscribe themselves to a system, allowing the system to reference its components.
 
-See the [example](examples/sphere_registry_system) as well as the [SystemWrapper docs](dist/docs/classes/_aframe_wrapper_.systemwrapper.html) for more details. 
+See the [example](examples/sphere_registry_system) as well as the [SystemWrapper docs](http://htmlpreview.github.io/?https://github.com/olioapps/aframe-typescript-toolkit/blob/master/dist/docs/classes/_aframe_wrapper_.systemwrapper.html) for more details. 
 
 ---
 
@@ -138,7 +138,7 @@ Email: [vr@olioapps.com](vr@olioapps.com)
 ---
 
 ## Additional Reading 
-- [aframe-typescript-toolkit Docs](dist/docs/index.html)
+- [aframe-typescript-toolkit Docs](http://htmlpreview.github.io/?https://github.com/olioapps/aframe-typescript-toolkit/blob/master/dist/docs/index.html)
 - [A-Frame](https://aframe.io/)
 - [Typescript](https://www.typescriptlang.org/docs/home.html)
 
