@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@types/aframe": "^0.7.2",
-    "aframe-typescript-toolkit": "0.0.17",
+    "aframe-typescript-toolkit": "0.0.18",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
