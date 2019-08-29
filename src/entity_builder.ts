@@ -1,4 +1,5 @@
 import { ComponentWrapper } from "./aframe_wrapper"
+import * as AFrame from "aframe"
 
 export interface Attributes {
     [key: string]: {}

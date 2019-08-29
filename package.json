@@ -1,6 +1,6 @@
 {
   "name": "aframe-typescript-toolkit",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "main": "src/index.ts",
   "bin": {
     "aframe-typescript-toolkit": "./cli.js"
@@ -34,13 +34,14 @@
     "webpack-dev-server": "2.5.1"
   },
   "dependencies": {
-    "@types/aframe": "^0.7.2",
+    "@types/aframe": "^0.8.3",
     "@types/three": "^0.92.21",
     "@types/webvr-api": "^0.0.35",
-    "aframe": "^0.8.0",
+    "aframe": "^0.9.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
-    "inquirer": "^6.2.0"
+    "inquirer": "^6.2.0",
+    "node-pre-gyp": "^0.13.0"
   }
 }
