@@ -19,19 +19,25 @@ const plugins = [
         failOnHint: true
       }
     }
-  }),
-  new TypedocWebpackPlugin({
-      out: './docs',
-      module: 'commonjs',
-      target: 'es5',
-      exclude: ['**/node_modules/**/*.*', '**/examples/**/*.*', "**/.history/**"],
-      experimentalDecorators: true,
-      excludeExternals: true
   })
 ];
 
+
 if (!isProd) {
   plugins.push(new DashboardPlugin());
+  plugins.push(new TypedocWebpackPlugin({
+    out: './docs',
+    module: 'commonjs',
+    target: 'es5',
+    exclude: [
+      path.resolve(__dirname, '/node_modules'),
+      path.resolve(__dirname, '/examples'),
+      path.resolve(__dirname, '/.history'),
+      path.resolve(__dirname, '/templates')
+    ],
+    experimentalDecorators: true,
+    excludeExternals: true
+  }));
 }
 
 var config = {
@@ -53,15 +59,19 @@ var config = {
       {
         enforce: "pre",
         test: /\.ts?$/,
-        exclude: ["node_modules"],
+        exclude: path.resolve(__dirname, '/node_modules'),
         use: ["awesome-typescript-loader", "source-map-loader"]
       },
       {
         test: /\.(js|ts)$/,
         loader: "babel-loader",
-        exclude: [/\/node_modules\//]
+        exclude: path.resolve(__dirname, '/node_modules')
       }
     ]
+  },
+  stats: {
+    errorDetails: true,
+    cached: true
   },
   resolve: {
     extensions: [".ts", ".js"]

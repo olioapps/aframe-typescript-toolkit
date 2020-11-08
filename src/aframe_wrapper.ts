@@ -1,4 +1,4 @@
-import { EntityBuilder } from "./entity_builder"
+import * as AFrame from "aframe"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // helpers
 
@@ -35,11 +35,13 @@ const getInstanceMethodNames = (obj: {}, stop: {}) => {
  * Default implementations for component lifecycle methods such as init(), tick(), and others are provided,
  * and can be overridden for your component's specific behavior.
  */
-export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System = AFrame.System> 
+
+export abstract class ComponentWrapper<SCHEMA extends object = {}, SYSTEM extends AFrame.System = AFrame.System> 
     implements AFrame.Component<SCHEMA, SYSTEM> {
 
     el: AFrame.Entity
     id: string
+    initialized: boolean;
     data: SCHEMA
     schema: AFrame.Schema<SCHEMA>
     system: SYSTEM
@@ -125,6 +127,7 @@ export abstract class ComponentWrapper<SCHEMA = {}, SYSTEM extends AFrame.System
 export abstract class SystemWrapper<SCHEMA extends { [key: string]: any } = {}>
     implements AFrame.System {
 
+    el: AFrame.Entity
     data: SCHEMA
     schema: AFrame.Schema<SCHEMA>
     name: string

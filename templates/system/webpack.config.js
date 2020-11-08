@@ -54,13 +54,13 @@ var config = {
       {
         enforce: "pre",
         test: /\.ts?$/,
-        exclude: ["node_modules"],
+        exclude: path.resolve(__dirname, '/node_modules'),
         use: ["awesome-typescript-loader", "source-map-loader"]
       },
       {
         test: /\.(js|ts)$/,
         loader: "babel-loader",
-        exclude: [/\/node_modules\//]
+        exclude: path.resolve(__dirname, '/node_modules'),
       },
       {
         test: /\.html$/,
@@ -71,12 +71,18 @@ var config = {
   resolve: {
     extensions: [".ts", ".js"]
   },
+  stats: {
+    errorDetails: true,
+    cached: true
+  },
   plugins: plugins,
   devServer: {
     contentBase: path.join(__dirname, '/src'),
     compress: true,
     port: 3000,
     hot: true,
+    inline: true,
+    open: true,
     disableHostCheck: true,
     watchContentBase: true,
   }
