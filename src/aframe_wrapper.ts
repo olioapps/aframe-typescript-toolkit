@@ -41,6 +41,7 @@ export abstract class ComponentWrapper<SCHEMA extends object = {}, SYSTEM extend
 
     el: AFrame.Entity
     id: string
+    initialized: boolean;
     data: SCHEMA
     schema: AFrame.Schema<SCHEMA>
     system: SYSTEM
@@ -126,6 +127,7 @@ export abstract class ComponentWrapper<SCHEMA extends object = {}, SYSTEM extend
 export abstract class SystemWrapper<SCHEMA extends { [key: string]: any } = {}>
     implements AFrame.System {
 
+    el: AFrame.Entity
     data: SCHEMA
     schema: AFrame.Schema<SCHEMA>
     name: string

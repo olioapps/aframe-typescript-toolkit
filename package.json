@@ -8,7 +8,7 @@
   "preferGlobal": true,
   "scripts": {
     "cli": "node cli.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --bail",
     "clean": "npm cache clear && rimraf -- dist",
     "test": "karma start"
   },
@@ -42,6 +42,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "inquirer": "^7.3.3",
-    "node-pre-gyp": "^0.16.0"
+    "node-pre-gyp": "^0.16.0",
+    "webpack-cli": "^4.2.0"
   }
 }
