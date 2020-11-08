@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "src/index.ts",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --display-error-details --display-cached --bail",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js  --progress --profile --color --bail",
     "clean": "npm cache clear && rimraf -- dist",
     "test": "karma start",
     "start": "npm run server:dev",

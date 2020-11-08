@@ -71,6 +71,10 @@ var config = {
   resolve: {
     extensions: [".ts", ".js"]
   },
+  stats: {
+    errorDetails: true,
+    cached: true
+  },
   plugins: plugins,
   devServer: {
     contentBase: path.join(__dirname, '/src'),
