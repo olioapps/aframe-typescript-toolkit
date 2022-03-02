@@ -16,7 +16,7 @@
     "cross-env": "^5.0.1",
     "eslint": "^4.2.0",
     "html-webpack-plugin": "^2.29.0",
-    "karma": "^1.7.0",
+    "karma": "^6.3.16",
     "rimraf": "^2.6.1",
     "source-map-loader": "^0.2.1",
     "tslint": "^5.5.0",
